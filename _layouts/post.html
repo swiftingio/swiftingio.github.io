@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<p>{{ page.date | date_to_string }}</p>
+
+<h1>{{ page.title | markdownify }}</h1>
+
+{{ content }}
+
+<p>
+    {% assign author = site.authors | where: 'short_name', page.author | first %}
+    {% if author %}
+        <a href="https://twitter.com/{{ author.twitter }}">{{ author.name }}</a>        
+    {% endif %}
+</p>
