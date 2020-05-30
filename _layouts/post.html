@@ -22,7 +22,7 @@ layout: default
           {% assign mapped_author = site.authors | where: 'short_name', author | first %}
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
             <span class="p-author h-card" itemprop="name">
-              <a href="https://twitter.com/{{ author.twitter }}">{{ mapped_author.name }}</a>
+              <a href="https://twitter.com/{{ mapped_author.twitter }}">{{ mapped_author.name }}</a>
             </span>
           </span>
             {%- if forloop.last == false %}, {% endif -%}
