@@ -14,7 +14,7 @@ author:
 url: "https://swifting.io"
 twitter_username: swiftingio
 github_username:  swiftingio
-google_analytics: our-GA-key
+google_analytics: UA-72229105-2
 # Build settings
 theme: minima
 plugins:

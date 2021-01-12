@@ -1,6 +1,6 @@
 ---
 short_name: team
-name: The Team
+name: The swifting.io team
 twitter: swiftingio
 ---
 swifting.io

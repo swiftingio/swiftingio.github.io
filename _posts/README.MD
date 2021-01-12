@@ -1,0 +1,1 @@
+Maciej Piotrowski, Bartłomiej Woronin, Michał Wojtysiak
