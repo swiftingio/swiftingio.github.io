@@ -78,7 +78,7 @@ func testAtLeast1MessageOnLoad() {
     let viewModel = MessagesViewModel(dispatcher: dispatcher)
                
     //Act
-    viewModel { fetched in
+    viewModel.load { fetched in
         messages = fetched
     }
     
