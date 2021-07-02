@@ -281,7 +281,7 @@ This little change boosts the equality performance a lot if your state struct is
 
 ### 3. Scope your store state when possible
 
-If you ever used a `pullback` feature from the TCA, for sure you have in your code something like the "main state" which also contains multiple sub-states which are needed for the child views.
+If you ever used a `pullback` ([documentation](https://pointfreeco.github.io/swift-composable-architecture/Reducer/#reducer.pullback(state:action:environment:))) feature from the TCA, for sure you have in your code something like the "main state" which also contains multiple sub-states which are needed for the child views.
 
 Let me provide an example. Let’s assume that we have a separate state and reducer for the scrolling position. 
 
