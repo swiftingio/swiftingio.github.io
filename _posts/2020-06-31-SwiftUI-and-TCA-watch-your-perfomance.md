@@ -125,6 +125,8 @@ struct MyView: View {
 
 ```
 
+In short - `WithViewStore` struct transforms a `Store` into an observable `ViewStore` in order to compute views from store state. (find out [more](https://pointfreeco.github.io/swift-composable-architecture/WithViewStore/))
+
 Ok we’ve made our code cleaner, however the performance problem still exists. Here we came to the second part of the problem...
 
 #### b) Do not put heavy operations directly into the reducer
