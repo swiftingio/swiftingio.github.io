@@ -410,7 +410,7 @@ If you feel that you did everything described in the previous points but your ap
 
 a) The most effective - use instruments (SwiftUI analysis) and check the amount of the WithViewStore calls in the `View Properties` section. 
 
-b) The second method is to use the `.debug()` modifier on the reducer and observe Xcode logs. (more in the readme of TCA).
+b) The second method is to use the `.debug()` modifier on the reducer and observe Xcode logs. ([more in the readme of TCA](https://github.com/pointfreeco/swift-composable-architecture)).
 
 
 If you noticed that this is the issue you can eg. try to play with the `.debounce()` or `.throttle()` mechanism which will prevent the state from updating too often in a short time interval and ultimately reduce amount of the view reloads (and equality checks in state) that are binded with ’WithViewStore’. An example use of the debounce mechanism based on the reducer from previous example could look like this:
