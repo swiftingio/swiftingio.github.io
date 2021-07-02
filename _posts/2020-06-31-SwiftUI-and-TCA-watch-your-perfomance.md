@@ -151,7 +151,10 @@ So unfortunately **our reducer is not declared** properly since everything defin
 ```
  **Solution**
 
-Let’s create the Environment within the `MyViewData` struct, where we can define our function that performs those heavy operations. As a result of the function we can run an `Effect` so in the later usage we could easily dispatch the execution to the proper queue. 
+Let’s create the Environment within the `MyViewData` struct, where we can define our function that performs those heavy operations. As a result of the function we can run an `Effect`* so in the later usage we could easily dispatch the execution to the proper queue. 
+
+**`Effect` type encapsulates a unit of work that can be run in the outside world, and can feed data back to the `Store`. It is the perfect place to do side effects, such as network requests, saving/loading from disk, creating timers, interacting with dependencies, and more.* [(source)](https://pointfreeco.github.io/swift-composable-architecture/Effect/)
+
 
 ```
  public struct Environment {
