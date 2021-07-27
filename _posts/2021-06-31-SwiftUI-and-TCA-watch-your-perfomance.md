@@ -1,7 +1,7 @@
 ---
 layout: post
 author: kacper
-title: \#55 Swift UI & The Composable Architecture - watch your performance (5 rules worth applying).
+title: \#55 SwiftUI & The Composable Architecture - watch your performance (5 rules worth applying).
 excerpt: I would like to present some helpful tips that might help you keep your app performance at the high level and ultimately improve the user experience when working with SwiftUI and TCA. 
 
 ---
