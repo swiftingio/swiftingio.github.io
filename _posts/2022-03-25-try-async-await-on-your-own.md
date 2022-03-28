@@ -20,7 +20,7 @@ In the below sections we will give you also some more context for our code. So t
 
 ### 1. Fetch data from the network using async/await.
 
-The new async/await syntax is really straightforward. All you have to do is use a new API call on `URLSession` which is `let (data, response) = try await URLSession.shared.data(from: url)`. This means that the Thread which is fetching the data would wait asynchronously for the result before executing the next line of code without blocking the Thread (so it means that the Thread may do something else in the meantime while waiting for the data). 
+The new async/await syntax is really straightforward. All you have to do is use a new API call on `URLSession` which is `let (data, response) = try await URLSession.shared.data(from: url)`. The await keyword is how you notice that a block of code doesn’t execute as one transaction. The function may suspend, and other things may happen while it’s suspended between the lines of the function. More than that, the function may resume onto an entirely different thread.
 
 The full function which fetches the APOD data in the Networking layer in our case looks like this:
 
@@ -51,7 +51,7 @@ public func fetchApods(startDate: Date, endDate: Date) async throws -> [ApodMode
 
 As we used the `try await URLSession.shared.data(from: url)` we had to mark also the function as `async` which would inform the compiler that this method is asynchronous. 
 
-Since our networking do also the parsing part (`try decoder.decode([ApodModel].self, from: data)`), we decided to put this function as a part of an `actor`, which is great because now we are sure that everything done within the function will be done in the background Thread, not main.
+Since our networking do also the parsing part (`try decoder.decode([ApodModel].self, from: data)`), we decided to put this function as a part of an `actor`, which is ok because now we are sure that everything done within the function will be done in the background Thread, not main.
 
 So as an overview our networking layer looks like this:
 
@@ -98,7 +98,7 @@ Each APOD item on the list has its own image with a specific url. Our goal was t
 
 In addition, when there is a new thumbnail fetched, we want to inform UI about it to refresh the view and present the loaded images on screen.
 
-The best candidates for it are:
+The best candidates to fulfill those requirements are:
 
 - `Task Group` which allows us to create mutliple concurrent tasks for fetching the thumbnails.
 - `AsyncSequence` which allows us to receive the data when they are delivered one after another.
@@ -123,18 +123,19 @@ public nonisolated func getThumbnails(models: [ApodModel]) -> ThumbnailsStream {
 }
 ```
 
-As a parameter we take the ApodModels which contains the url for our images. Our function will return the `AsyncStream`, which will be delivering the tuple `(String, UIImage)` when the particular image is fetched (`String` will contain the image ID).
+As a parameter we take the ApodModels which contains the url for our images. Our function will return the `AsyncStream`, which will be delivering the tuple `(String, UIImage)` when the particular image is fetched (`String` will contain the image URL).
 
 Now we create the `AsyncStream` using its intializer, which is returning the `continuation` as a closure parameter, which we will use later on (please find more about continuations in here (link)). In short continuation is needed to inform the stream about the received elements or when the stream is finishing its work.
 
 As the work within the stream will be done concurrently we can use the `Task` syntax to wrap the async work since our desired `fetchThumbnails` function is `async`.
 
-Please note that it is not an `async` function, because we would like to only bind the data and receive them later on.`nonisolated` prefix gave a possibility for the function to synchronously create the AsyncStream in the code. Since we do not modify anything in terms of the actors properties in the function, it is safe to expose the method as `nonisolated`.
+Please note that `func getThumbnails()` is not an `async` function, because we would like to only bind the data and receive them later on.
+`nonisolated` prefix gave a possibility for the function to synchronously create the AsyncStream in the code. Since we do not modify anything in terms of the actors properties in the function, it is safe to expose the method as `nonisolated`.
 
 And then the usage of Task Group looks like below:
 
 ```
-   private func fetchThumbnails(
+private func fetchThumbnails(
         from apody: [ApodModel],
         continuation: ThumbnailsStream.Continuation
     ) async throws {
@@ -149,10 +150,10 @@ And then the usage of Task Group looks like below:
             }
             continuation.finish()
         }
-    }
+}
 ```
 
-In the func `fetchThumbnails` the continuation property yields the result every time the group task finishes its fetch. Once all of the data are fetched, we call conitnuation.finish() to inform that the stream has finished publishing data.
+In the func `fetchThumbnails` the continuation property yields the result every time the group task finishes its fetch. Once all of the data are fetched, we call `conitnuation.finish()` to inform that the stream has finished publishing data.
 
 The binding in the parent would look like this:
 
@@ -171,6 +172,6 @@ private let dataSource: ThumbnailDataSource
 	...
 ```
 
-Our ViewModel (`ApodViewModel`) is responsible for fetching thumbnails and updating the UI when new thumbnails appears (via `@Published var thumbnails` property and `ObservableObject` conformance). It is marked as a `@MainActor`, which means that every update of the properties or actions within the functions will be called on the main thread. So in our case when the thumbnails are fetched - the UI will be updated from the main thread which is really useful.
+Our ViewModel (`ApodViewModel`) is responsible for fetching thumbnails and updating the UI when new thumbnails appears (via `@Published var thumbnails` property and `ObservableObject` conformance). It is marked as a `@MainActor`, which means that every update of the properties or actions within the functions will be called on the main thread. So in our case when the thumbnails are fetched - the UI will be updated from the main thread.
 
 
