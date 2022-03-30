@@ -26,7 +26,7 @@ The new async/await syntax is really straightforward. All you have to do is use 
 
 The full function which fetches the APOD data in the Networking layer in our case looks like this:
 
-```
+```swift
 public func fetchApods(startDate: Date, endDate: Date) async throws -> [ApodModel] {
 	// 1. Prepare url.
         let endpoint = ApodEndpoint.apody
@@ -57,7 +57,7 @@ Since our networking do also the parsing part (`try decoder.decode([ApodModel].s
 
 So as the API overview of our networking layer looks like this:
 
-```
+```swift
 public protocol ApodNetworking {
     func fetchApods(startDate: Date, endDate: Date) async throws -> [ApodModel]
 	...
@@ -73,7 +73,7 @@ public actor DefaultApodNetworking: ApodNetworking {
 
 And the usage of it is like below:
 
-```
+```swift
 @MainActor class ApodViewModel: ObservableObject {
 	...
     private let networking: ApodNetworking
@@ -107,13 +107,13 @@ The best candidates to fulfill those requirements are:
 
 So first of all - we start with creating the new data type which will perform all of this. Once again `actor` is a great choice since all of those thing are not user-facing, so it should be done in background. Let's call it `ThumbnailDataSource`.
 
-```
+```swift
 public actor ThumbnailDataSource { }
 ```
 
 Great, now we define the function which will start fetching the thumbnails.
 
-```
+```swift
 public typealias ThumbnailsStream = AsyncStream<(String, UIImage)>
 
 public nonisolated func getThumbnails(models: [ApodModel]) -> ThumbnailsStream {
@@ -133,7 +133,7 @@ Please note that `func getThumbnails()` is not an `async` function, because we w
 
 And then the usage of the Task Group looks like below:
 
-```
+```swift
 private func fetchThumbnails(
         from apody: [ApodModel],
         continuation: ThumbnailsStream.Continuation
@@ -156,7 +156,7 @@ In the func `fetchThumbnails` the continuation property yields the result every 
 
 The binding in the parent would look like this:
 
-```
+```swift
 @MainActor class ApodViewModel: ObservableObject {
  
 @Published var thumbnails: [String: UIImage] = [:]
@@ -233,7 +233,7 @@ Let's say that we want to have section per week or month (which are not enity pr
 
 Then we can use those properties as a section identifiers:
 
-```
+```swift
     @SectionedFetchRequest(
         sectionIdentifier: \Apod.week,
         sortDescriptors: [SortDescriptor(\Apod.date, order: .reverse)]
