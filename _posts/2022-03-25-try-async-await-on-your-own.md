@@ -30,25 +30,25 @@ The full function which fetches the APOD data in the Networking layer in our cas
 
 ```swift
 public func fetchApods(startDate: Date, endDate: Date) async throws -> [ApodModel] {
-	// 1. Prepare url.
-        let endpoint = ApodEndpoint.apody
-        let parameters = [
-            ApodParameter.startDate(startDate),
-            ApodParameter.endDate(endDate),
-            ApodParameter.apiKey,
-        ]
+// 1. Prepare url.
+	let endpoint = ApodEndpoint.apody
+	let parameters = [
+       ApodParameter.startDate(startDate),
+       ApodParameter.endDate(endDate),
+       ApodParameter.apiKey,
+    ]
 
-        let url = try urlBuilder.build(endpoint: endpoint, parameters: parameters)
-    // 2. Fetch data.
-        let (data, response) = try await URLSession.shared.data(from: url)
+	let url = try urlBuilder.build(endpoint: endpoint, parameters: parameters)
+// 2. Fetch data.
+	let (data, response) = try await URLSession.shared.data(from: url)
+	guard let httpResponse = response as? HTTPURLResponse, 
+		httpResponse.statusCode == 200 else {
+			throw ApodNetworkingError.invalidServerResponse
+	}
+// 3. Parse received data.
+	let parsedData = try decoder.decode([ApodModel].self, from: data)
 
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            throw ApodNetworkingError.invalidServerResponse
-        }
-    // 3. Parse received data.
-        let parsedData = try decoder.decode([ApodModel].self, from: data)
-
-        return parsedData
+	return parsedData
 }
 
 ```
@@ -116,14 +116,16 @@ public actor ThumbnailDataSource { }
 Great, now we define the function which will start fetching the thumbnails.
 
 ```swift
-public typealias ThumbnailsStream = AsyncStream<(String, UIImage)>
+public actor ThumbnailDataSource { 
+	public typealias ThumbnailsStream = AsyncStream<(String, UIImage)>
 
-public nonisolated func getThumbnails(models: [ApodModel]) -> ThumbnailsStream {
-        return ThumbnailsStream { continuation in
-            Task {
-                try await fetchThumbnails(from: models, continuation: continuation)
-            }
-        }
+	public nonisolated func getThumbnails(models: [ApodModel]) -> ThumbnailsStream {
+		return ThumbnailsStream { continuation in
+			Task {
+				try await fetchThumbnails(from: models, continuation: continuation)
+			}
+		}
+	}
 }
 ```
 
@@ -161,16 +163,17 @@ The binding in the parent would look like this:
 ```swift
 @MainActor class ApodViewModel: ObservableObject {
  
-@Published var thumbnails: [String: UIImage] = [:]
+	@Published var thumbnails: [String: UIImage] = [:]
 
-private let dataSource: ThumbnailDataSource
+	private let dataSource: ThumbnailDataSource
 	...
-    public func fetchThumbnails(for models: [ApodModel]) async {
+	public func fetchThumbnails(for models: [ApodModel]) async {
         for await (url, image) in dataSource.getThumbnails(models: models) {
             thumbnails[url] = image
         }
     }
 	...
+}
 ```
 
 Our ViewModel (`ApodViewModel`) is responsible for fetching thumbnails and updating the UI when new thumbnails appears (via `@Published var thumbnails` property and `ObservableObject` conformance). It is marked as a `@MainActor`, which means that every update of the properties or actions within the functions will be called on the main thread. So in our case when the thumbnails are fetched - the UI will be updated from the main thread.
