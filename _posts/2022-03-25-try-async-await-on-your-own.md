@@ -12,8 +12,10 @@ If you haven't tried the modern approach of handling concurrency in your applica
 
 The application is based on the NASA API which allows for displaying the APOD (Astronomic picture of the Day) in a SwiftUI List, which you can also add to locally stored Favorites.
 
+<p float="left">
 <img width="300" alt="Zrzut ekranu 2021-12-17 o 09 53 06" src="https://raw.githubusercontent.com/swiftingio/WWDC21/main/Images/list.png">
 <img width="300" alt="Zrzut ekranu 2021-12-17 o 09 53 06" src="https://raw.githubusercontent.com/swiftingio/WWDC21/main/Images/details.png">
+</p>
 
 Please find the github repo under this [link](https://github.com/swiftingio/WWDC21).
 
