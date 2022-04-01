@@ -8,9 +8,9 @@ excerpt: If you haven't tried the modern approach of handling swift concurrency 
 
 # Intro
 
-If you haven't tried the modern approach of handling swift concurrency in your application yet, here we are with the example application which does the most popular things that your application for sure does and which may be helpful for you to see how the syntax looks like and how it works in action.
+If you haven't tried the modern approach of handling swift concurrency in your application yet, here we are with the example app which does the most popular things that your application for sure does and which may be helpful for you to see how the syntax looks like and how it works in action.
 
-The application is based on the NASA API which allows for displaying the APOD (Astronomic picture of the Day) in a SwiftUI List, which you can also add to locally stored Favorites.
+The application is based on the NASA API which allows for displaying the APOD (Astronomic picture of the Day) using a SwiftUI components. You can also add them to locally stored Favorites.
 
 <p float="left">
 <img width="300" alt="Zrzut ekranu 2021-12-17 o 09 53 06" src="https://raw.githubusercontent.com/swiftingio/WWDC21/main/Images/list.png">
@@ -19,7 +19,7 @@ The application is based on the NASA API which allows for displaying the APOD (A
 
 Please find the github repo under this [link](https://github.com/swiftingio/WWDC21).
 
-In the below sections we will give you also some more context for our code. So the examples below will strongly relay on the whole codebase. But no worries, examples does not require you to know the whole codebase :)
+In the below sections we will give you also some more context for our code. So the examples below will relay on our app. But no worries, those examples does not require you to know the whole codebase :)
 
 
 # Fetch data from the network using async/await.
@@ -96,7 +96,7 @@ And the usage of it is like below:
 
 # Actors
 
-### What is actor ?
+### What is an actor ?
 
 - Actors are a synchronization mechanism for shared mutable state. It has its own state and that state is isolated from the rest of the program to ensure synchronized access to that data. In short: it gives us protection from concurrent access.
 
@@ -163,7 +163,7 @@ Probably in your application you don't want to mark whole class as a main actor,
 
 Each APOD item on the list has its own image with a specific url. Our goal was to trigger the fetch all possible thumbnails at once in the background.
 
-*NOTE: Please note that if we would have 1000 elements on the list all of the images will be fetched at once so it is not the desired goal for the application, the mechanism for fetching should do it in a lazy way. But as an experiment for the Task Group let's assume that it is completely fine :)*
+*NOTE: Please note that if we would have 1000 elements on the list all of the images will be fetched at once so it is not the desired goal for the application, the mechanism for fetching should be triggered in a lazy way (eg. fetching nearest 20 elements depending on the scroll position). But as an experiment for the Task Group let's assume that it is completely fine :)*
 
 In addition, when there is a new thumbnail fetched, we want to inform UI about it to refresh the view and present the loaded images on screen.
 
@@ -194,9 +194,9 @@ public actor ThumbnailDataSource {
 }
 ```
 
-As a parameter we take the ApodModels which contains the url for our images. Our function will return the `AsyncStream`, which will be delivering the tuple `(String, UIImage)` when the particular image is fetched (`String` will contain the image URL).
+As a parameter we take the array of ApodModels which contains the url for our images. Our function will return the `AsyncStream`, which will be delivering the tuple `(String, UIImage)` when the particular image is fetched (`String` will contain the image URL).
 
-Now we create the `AsyncStream` using its intializer, which is returning the `continuation` as a closure parameter, which we will use later on (more about [AsyncSequence](https://developer.apple.com/documentation/swift/asyncstream)). In short continuation is needed to inform the stream about the received elements or when the stream is finishing its work.
+Now we create the `AsyncStream` using its intializer, which is returning the `continuation` as a closure parameter, which we will use later on (more about [AsyncStream](https://developer.apple.com/documentation/swift/asyncstream)). In short continuation is needed to inform the stream about the received elements or when the stream is finishing its work.
 
 Please note that `func getThumbnails()` is not an `async` function, because we would like to only bind the data and receive them later on. That's why all async code was wrapped as a `Task`. The `nonisolated` prefix gave a possibility for the function to synchronously create the `AsyncStream` in the code. Since we do not modify anything in terms of the actors properties in the function, it is safe to expose the method as `nonisolated`.
 
@@ -221,7 +221,9 @@ private func fetchThumbnails(
 }
 ```
 
-In the func `fetchThumbnails` the continuation property yields the result every time the group task finishes its fetch. Once all of the data are fetched, we call `conitnuation.finish()` to inform that the stream has finished publishing data.
+Once added a child task to a group (by calling `group.addTask()`), child tasks are being executed immediately and in any order.
+
+The `continuation` property yields the result every time the group task finishes its fetch. Once all of the data are fetched, we call `conitnuation.finish()` to inform that the stream has finished publishing data.
 
 The binding in the parent would look like this:
 
@@ -241,7 +243,9 @@ The binding in the parent would look like this:
 }
 ```
 
-Our ViewModel (`ApodViewModel`) is responsible for fetching thumbnails and updating the UI when new thumbnails appears (via `@Published var thumbnails` property and `ObservableObject` conformance). It is marked as a `@MainActor`, which means that every update of the properties or actions within the functions will be called on the main thread. So in our case when the thumbnails are fetched - the UI will be updated from the main thread.
+Great, now every time we call `fetchThumbnails(for models: [ApodModel])`, all of the thumbnails for the passed ApodModels will be fetched in the background, by delivering fetched images one after another and populate the thumbnails dictionary.
+
+As you may notice our ViewModel (`ApodViewModel`) is responsible for fetching thumbnails and updating the UI when new thumbnails appears (via `@Published var thumbnails` property and `ObservableObject` conformance). It is marked as a `@MainActor`, which means that every update of the properties or actions within the functions will be called on the main thread. So in our case when the thumbnails are fetched - the UI will be updated from the main thread.
 
 # SecionedFetchRequest
 
