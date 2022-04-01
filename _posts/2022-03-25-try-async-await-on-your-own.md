@@ -1,14 +1,14 @@
 ---
 layout: post
 author: kacper bartek
-title: \#56 Async await - try it on your own!
-excerpt: WWDC21 new stuff template. 
+title: \#56 First steps with Swift Concurrency.
+excerpt: If you haven't tried the modern approach of handling swift concurrency in your application yet, here we are with a few examples. #AsyncAwait #SwiftConcurrency #AsyncStream #TaskGroup #Actors #SectionedFetchRequest
 
 ---
 
 # Intro
 
-If you haven't tried the modern approach of handling concurrency in your application yet, here we are with the example application which does the most popular things that your application for sure will also do and which may be helpful for you to see how the syntax looks like and how it works in action.
+If you haven't tried the modern approach of handling swift concurrency in your application yet, here we are with the example application which does the most popular things that your application for sure does and which may be helpful for you to see how the syntax looks like and how it works in action.
 
 The application is based on the NASA API which allows for displaying the APOD (Astronomic picture of the Day) in a SwiftUI List, which you can also add to locally stored Favorites.
 
@@ -94,7 +94,72 @@ And the usage of it is like below:
 
 *Now saving the data to the persistence after fetching them from the network is very clear for the reader without any nested closures. You read it top-down as it executes.*
 
-# Fetch thumbnails concurrently using AsyncSequence and Task Group.
+# Actors
+
+### What is actor ?
+
+- Actors are a synchronization mechanism for shared mutable state. It has its own state and that state is isolated from the rest of the program to ensure synchronized access to that data. In short: it gives us protection from concurrent access.
+
+- Actors are a new kind of (reference) type in Swift, which can have properties, methods, initializers, subscripts, and so on.... but they are not supporting subclassing.
+
+Is very importnat to distinguish two types of actors:
+
+- MainActor (everything what is main actor runs on main queue)
+- Actor (methods and properties are **not** accessed not on main queue)
+
+### Actor
+
+What could be the an actor? Good candidates which can become actors are classes which possess logic not connected to the UI. So it can be for example part of code responsible for:
+
+- Networking
+- Persistance
+- Caching
+- Etc.
+
+Let's look on the example from our application:
+
+```swift
+public actor DefaultApodNetworking: ApodNetworking {
+    let decoder: JSONDecoder
+    let urlBuilder: URLBuilder
+  
+     public func fetchApods(count: Int) async throws -> [ApodModel] {}
+     public func fetchApods(startDate: Date, endDate: Date) async throws -> [ApodModel] {}
+     public func fetchImage(url: String) async throws -> UIImage {}
+}
+```
+
+As above, if we define a new actor, that way we can make sure that all methods of that actor will be  **not** run on the main thread, the access to the properties either. Actor help us to to be thread safe (which we cannot guaranteed in the classes without using some special mechanism like: GCD, semaphores, locks, etc.)
+
+### @MainActor  
+
+- The main actor is an actor that represents the **main** thread.
+- The good practice would be add `@MainActor` attribute to all observable object classes to be absolutely sure that all UI updates happen on the main thread
+
+In our app we marked **ApodViewModel** as a MainActor: 
+
+```swift
+@MainActor class ApodViewModel: ObservableObject {
+    @Published var thumbnails: [String: UIImage] = [:]
+
+		...
+
+```
+
+is good candidate because is a ObservableObject and accessing properties of this class should be as fast as possible because ApodViewModel is the source for our UI. In your application for sure you have very similar patterns that you have view model which contains collecions which needs to be reloded on the main thread when synchronization (from other actors) ends. For sure it can be potentailly good candicate for MainActor.
+
+Probably in your application you don't want to mark whole class as a main actor, then you have two options:
+
+- You can mark only the function with @MainActor, to be sure that the logic inside the fuctions will be executed always on the main thread
+- or you can explicitly say that you want to run some part of function on main thread, then you can use this pattern:
+
+```swift
+    await MainActor.run { 
+        ....
+    }
+```
+
+# Fetch thumbnails concurrently using AsyncStream and Task Group
 
 Each APOD item on the list has its own image with a specific url. Our goal was to trigger the fetch all possible thumbnails at once in the background.
 
@@ -259,70 +324,11 @@ SortSelectionView(
 }
 ```
 
-# Actors
+Using SwiftUI `Menu` and `Picker` components we display the available sort options when user taps on a top-right toolbar button:
 
-### What is actor ?
-
-- Actors are a synchronization mechanism for shared mutable state. It has its own state and that state is isolated from the rest of the program to ensure synchronized access to that data. In short: it gives us protection from concurrent access.
-
-- Actors are a new kind of (reference) type in Swift, which can have properties, methods, initializers, subscripts, and so on.... but they are not supporting subclassing.
-
-Is very importnat to distinguish two types of actors:
-
-- MainActor (everything what is main actor runs on main queue)
-- Actor (methods and properties are **not** accessed not on main queue)
-
-### Actor
-
-What could be the an actor? Good candidates which can become actors are classes which possess logic not connected to the UI. So it can be for example part of code responsible for:
-
-- Networking
-- Persistance
-- Caching
-- Etc.
-
-Let's look on the example from our application:
-
-```swift
-public actor DefaultApodNetworking: ApodNetworking {
-    let decoder: JSONDecoder
-    let urlBuilder: URLBuilder
-  
-     public func fetchApods(count: Int) async throws -> [ApodModel] {}
-     public func fetchApods(startDate: Date, endDate: Date) async throws -> [ApodModel] {}
-     public func fetchImage(url: String) async throws -> UIImage {}
-}
-```
-
-As above, if we define a new actor, that way we can make sure that all methods of that actor will be  **not** run on the main thread, the access to the properties either. Actor help us to to be thread safe (which we cannot guaranteed in the classes without using some special mechanism like: GCD, semaphores, locks, etc.)
-
-### @MainActor  
-
-- The main actor is an actor that represents the **main** thread.
-- The good practice would be add `@MainActor` attribute to all observable object classes to be absolutely sure that all UI updates happen on the main thread
-
-In our app we marked **ApodViewModel** as a MainActor: 
-
-```swift
-@MainActor class ApodViewModel: ObservableObject {
-    @Published var thumbnails: [String: UIImage] = [:]
-
-		...
-
-```
-
-is good candidate because is a ObservableObject and accessing properties of this class should be as fast as possible because ApodViewModel is the source for our UI. In your application for sure you have very similar patterns that you have view model which contains collecions which needs to be reloded on the main thread when synchronization (from other actors) ends. For sure it can be potentailly good candicate for MainActor.
-
-Probably in your application you don't want to mark whole class as a main actor, then you have two options:
-
-- You can mark only the function with @MainActor, to be sure that the logic inside the fuctions will be executed always on the main thread
-- or you can explicitly say that you want to run some part of function on main thread, then you can use this pattern:
-
-```swift
-    await MainActor.run { 
-        ....
-    }
-```
+<p float="left">
+<img width="300" alt="Zrzut ekranu 2021-12-17 o 09 53 06" src="https://raw.githubusercontent.com/swiftingio/WWDC21/main/Images/sorting.png">
+</p>
 
 # Summary
 
