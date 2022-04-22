@@ -146,7 +146,7 @@ In our app we marked **ApodViewModel** as a MainActor:
 
 ```
 
-is good candidate because is an `ObservableObject` and accessing properties of this class should be as fast as possible because `ApodViewModel` is the source for our UI. In your application for sure you have very similar patterns that you have view model which contains collecions which needs to be reloded on the main thread when synchronization (from other actors) ends. For sure it can be potentailly good candicate for MainActor.
+From the arhitecture point of view this is a good candidate because is an `ObservableObject` and accessing properties of this class should be as fast as possible because `ApodViewModel` is the source for our UI. In your application for sure you have very similar patterns that you have view model which contains collecions which needs to be reloded on the main thread when synchronization (from other actors) ends. For sure it can be potentailly good candicate for MainActor.
 
 Probably in your application you don't want to mark whole class as a main actor, then you have two options:
 
@@ -250,6 +250,8 @@ As you may notice our view model (`ApodViewModel`) is responsible for fetching t
 
 # SectionedFetchRequest
 
+Now let's focus on an improvement and  think how we could in a better way present the data by sectioning and improve searching by section sorting. WWDC 21 introduced a new API (SectionedFetchRequest) which can really help us with dealing this task. 
+
 ### About 
 
 ```swift
@@ -338,5 +340,4 @@ Using SwiftUI `Menu` and `Picker` components we display the available sort optio
 # Summary
 
 During creating demo app we saw that we ened with no class (only actors and structs). What gives us ensurance that we are thread safe. Of course, using actors dosen't get us an ensurance that we will not have performance problems, so still you have to really pay attention on what you have in the main actor. We  also encountered some performance isues, but then we realized that some part of the code needs to be moved from main actor to other actors what solves the problem.
-
 
