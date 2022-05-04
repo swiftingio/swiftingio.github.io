@@ -29,9 +29,9 @@ The new async/await syntax is really straightforward. All you have to do is use 
 The full function which fetches the APOD data in the Networking layer in our case looks like this:
 
 ```swift
-public func fetchApody(startDate: Date, endDate: Date) async throws -> [ApodModel] {
+public func fetchApods(startDate: Date, endDate: Date) async throws -> [ApodModel] {
 // 1. Prepare url.
-	let endpoint = ApodEndpoint.apody
+	let endpoint = ApodEndpoint.apods
 	let parameters = [
        ApodParameter.startDate(startDate),
        ApodParameter.endDate(endDate),
@@ -61,13 +61,13 @@ So as the API overview of our networking layer looks like this:
 
 ```swift
 public protocol ApodNetworking {
-    func fetchApody(startDate: Date, endDate: Date) async throws -> [ApodModel]
+    func fetchApods(startDate: Date, endDate: Date) async throws -> [ApodModel]
 	...
 }
 
 public actor DefaultApodNetworking: ApodNetworking {
 	...
-	public func fetchApody(startDate: Date, endDate: Date) async throws -> [ApodModel] {
+	public func fetchApods(startDate: Date, endDate: Date) async throws -> [ApodModel] {
 	...
 	}
 }
@@ -82,11 +82,11 @@ And the usage of it is like below:
 
     public func refreshData() async throws {
         ...
-        let objects = try await networking.fetchApody(
+        let objects = try await networking.fetchApods(
             startDate: endDate,
             endDate: currentDate
         )
-        try await persistence.save(apody: objects)
+        try await persistence.save(apods: objects)
     }
 	...
 }
@@ -123,8 +123,8 @@ public actor DefaultApodNetworking: ApodNetworking {
     let decoder: JSONDecoder
     let urlBuilder: URLBuilder
   
-     public func fetchApody(count: Int) async throws -> [ApodModel] {}
-     public func fetchApody(startDate: Date, endDate: Date) async throws -> [ApodModel] {}
+     public func fetchApods(count: Int) async throws -> [ApodModel] {}
+     public func fetchApods(startDate: Date, endDate: Date) async throws -> [ApodModel] {}
      public func fetchImage(url: String) async throws -> UIImage {}
 }
 ```
@@ -205,11 +205,11 @@ And then the usage of the Task Group looks like below:
 
 ```swift
 private func fetchThumbnails(
-        from apody: [ApodModel],
+        from apods: [ApodModel],
         continuation: ThumbnailsStream.Continuation
     ) async throws {
         try await withThrowingTaskGroup(of: (String, UIImage).self) { group in
-            for apod in apody.filter({ $0.media_type == .image }) {
+            for apod in apods.filter({ $0.media_type == .image }) {
                 group.addTask(priority: .background) {
                     (apod.url, try await self.fetchImage(url: apod.url))
                 }
@@ -273,7 +273,7 @@ SectionedFetchRequest is used in our ListView for fetching Apod's from our Persi
         sectionIdentifier: \Apod.date,
         sortDescriptors: [SortDescriptor(\Apod.date, order: .reverse)]
     )
-    public var apody: SectionedFetchResults<String, Apod>
+    public var apods: SectionedFetchResults<String, Apod>
     
 ```
 
@@ -286,7 +286,7 @@ After defining SectionedFetchRequest  is quite easy now to use [`SectionedFetchR
 
 ```swift
    List {
-        ForEach(apody) { section in
+        ForEach(apods) { section in
              Section(header: Text(section.id)) {
                   ForEach(section) { apod in
                          ApodView(...
@@ -325,7 +325,7 @@ SortSelectionView(
     sorts: ApodSort.sorts
 )
 .onChange(of: selectedSort) { _ in
-		let request = apody
+		let request = apods
     request.sortDescriptors = selectedSort.descriptors
     request.sectionIdentifier = selectedSort.section
 }
