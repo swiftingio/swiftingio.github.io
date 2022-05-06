@@ -341,3 +341,9 @@ Using SwiftUI `Menu` and `Picker` components we display the available sort optio
 
 During creating the demo app we saw that we ended with no class (only actors and structs). What gives us ensurance that we are thread-safe. Of course, using actors doesn't get us an ensurance that we will not have performance problems, so still, you have to really pay attention to what you have in the main actor. We also encountered some performance issues, but then we realized that some part of the code needs to be moved from the main actor to other actors which solves the problem.
 
+###Authors:
+
+Bartłomiej Woronin,	contact: [email](mailto:bartlomiej.woronin@gmail.com), [Twitter](https://twitter.com/BWoronin).
+
+Kacper Mazurkiewicz, contact: [email](mailto:kacper.mazurk@gmail.com), [Twitter](https://twitter.com/juniortjt1).
+
