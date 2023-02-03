@@ -71,14 +71,14 @@ Let's focus on the main subject of this post: Graph traversal algorithms. We can
 - DFS (Depth First Search)
 - BFS (Breath First Search)
 
-Is really important to understand how they work and when they are the most useful (in which use case). Below I tried to  highlight the main features of both ones. I presented it in the table for better understanding the difference between them.
+Is really important to understand how they work and when they are the most useful (in which use case). Below I tried to  highlight the main features of both ones. I presented it in the table for a better understanding of the difference between them.
 
 |                                                      | DFS                                                          | BFS                                                          |
 | :--------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | **Main usability**                                   | Is commonly used for visiting (traversing) all nodes in the graph (or to be more concrete: in connected component ) | Is used when we want to find the shortest path in the unweighted graph |
-| **Implementation**                                   | Using recursion (iterative as well but definitly less popular and used) | Iterative                                                    |
-| **Data structure used for iterative iplemnentation** | Stack                                                        | Queue                                                        |
-| **Visiting nodes order**                             | Branch by branch (so it goes by depth as much as possible then it swithces to next branch) | It visiting the nodes level by level. First it starts with the nearest neighboorhood of staring node and then it goes to the next level etc. |
+| **Implementation**                                   | Using recursion (iterative as well but definitely less popular and used) | Iterative                                                    |
+| **Data structure used for iterative implementation** | Stack                                                        | Queue                                                        |
+| **Visiting nodes order**                             | Branch by branch (so it goes by depth as much as possible, then it switches to the next branch) | It visits the nodes level by level. First, it starts with the nearest neighborhood of starting node and then it goes to the next level etc. |
 | **Cyclce detection**                                 | Commonly used for cycle detection                            | Not very efficient for finding a cycle in the graph.        |
 | **Complexity**                                       | O(V+ E)                                                      | O(V+ E)                                                      |
 | **Practice**                                         | - https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/description/ | https://leetcode.com/problems/minimum-genetic-mutation/solution/    https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/ |
