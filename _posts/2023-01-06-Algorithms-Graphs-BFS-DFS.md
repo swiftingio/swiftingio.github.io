@@ -1,5 +1,4 @@
-# Graph tarveral algorithms: BFS & DFS
-
+# Graph traversal algorithms: BFS & DFS
 
 ### Intro
 
