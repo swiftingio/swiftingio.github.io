@@ -2,7 +2,7 @@
 
 ### Intro
 
-Graphs for beginners seem really hard, but the truth is that they are not so difficult when you learn the basics and you really understand the main mechanisms.
+Graphs for beginners seem really hard, but the truth is that they are not so difficult when you learn the basics and you really understand the main mechanisms. Let's start with some basic knowledge.
 
 ### What is a graph?
 
@@ -18,12 +18,11 @@ Graphs for beginners seem really hard, but the truth is that they are not so dif
 <img src="https://raw.githubusercontent.com/swiftingio/blog/%2357-Algorithms-DFS-BFS/Graph.svg " width="643">
 </p>
   
-
 ### Graph representation
 
-Typically we represent a graph by adjacency list (is the most popular option). Every node has a list pointing to another nodes to which has a connection. For an implementation point of view can use for that a dicionary.
+Typically we represent a graph by adjacency list (is the most popular option). Every node has a list pointing to another nodes to which has a connection. For an implementation point of view we can use for that a dicionary.
 
-So for example to represent such a graph (which I showed on the image above) we can construct a adjacancy list like:
+For example, we can construct a adjacancy list like this:
 
 ```swift
 var adjList: [Int: [Int]] = [:]
@@ -44,21 +43,21 @@ The second option to represent a graph is a matrix:
 | 0    | 1    | 1    | 1    | 0    |
 | 0    | 1    | 0    | 0    | 0    |
 
-that shows that element node 1 (columns 1) is connected with 2 and 3 (so that why row 2 and row 4 has ones in column 1).
+that shows that element node 1 (columns 1) is connected with node 2 and 3 (so that's why row 2 and row 4 has ones in column 1).
 
-then node 2 (column 2) is connected with 1, 4, 5 (that's why in row 1, 4 and 5 have ones in column 2), etc.
+Then node 2 (column 2) is connected with node 1, 4, 5 (that's why in row 1, 4 and 5 have ones in column 2), etc.
 
 To be honest I have never used matrix representation in any graph related problem, but for sure is good to know that exists this kind of representation.
 
 ### Very popular graph terms
 
-- Cycle - if within a graph we travel and meet the visited node once again: it means that we have a cycle in the graph. Is quite intersing topic, becuase first of all we can ask ourselves: what to choose DFS or BFS? Then to make things more complicated how to find a path of the cycle?
+- **Cycle**: if within a graph we travel and meet the visited node once again: it means that we have a cycle in the graph. Is quite intersing topic, becuase first of all we can ask ourselves: what algorithm should we choose? DFS or BFS? Then to make things more complicated how to find a path of the cycle?
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/swiftingio/blog/%2357-Algorithms-DFS-BFS/Cycle.svg" width="643">
 </p>
 
-- Connected component (cc) - we can imagine connected component as a lonly island which is not connected to other lands. There exist algorithms for finding connected components in the graph. I hope in the future as well writes more about it in the sepearated post.
+- **Connected component (cc)**: we can imagine connected component as a lonly island which is not connected to other lands. There exist algorithms for finding connected components in the graph. I hope in the future as well write more about it in the sepearated post.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/swiftingio/blog/%2357-Algorithms-DFS-BFS/ConnectedComponents.svg" width="643">
@@ -71,7 +70,7 @@ Let's focus on the main subject of this post: Graph traversal algorithms. We can
 - DFS (Depth First Search)
 - BFS (Breath First Search)
 
-Is really important to understand how they work and when they are the most useful (in which use case). Below I tried to  highlight the main features of both ones. I presented it in the table for a better understanding of the difference between them.
+Is really important to understand how they work and when they are most useful (in which use case). Below I tried to highlight the main features of both ones. I presented it in the table for a better understanding of the difference between them.
 
 |                                                      | DFS                                                          | BFS                                                          |
 | :--------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -98,11 +97,11 @@ Algorithm starts with the selection of some first branch and goes to the end (en
 
 Node 5 has no other children so we come back to the place when it can check another branch (it this case it will be a node 3)
 
-And Then algorithm starts to vist the new unexplored branch, so it goes to node one and then it finishes the job.
+And then algorithm starts to vist the new unexplored branch, so it goes to node one and then it finishes the job.
 
 #### BFS
 
-The visualization shows that we go level by level and I think this is the best way how we can imaging how the algorithms works.
+The visualization shows that we go level by level and I think this is the best way how we can imaging the algorithm .
 
 <p align="center">
 <img src="
@@ -113,7 +112,7 @@ If we start with node id = 3 (first layer), then we visit 1 and 4 (second layer)
 
 ### Impmenenation
 
-Having this knowledge let's implement DFS and BFS with Swift. Additionally let's take a look at some additional topics which are as well very interesting:
+Having this knowledge let's implement DFS and BFS with Swift. Additionally let's take a look at some additional topics which are very interesting al well:
 
 - Finding the shortest path with unweighted graph
 - Finding cycle in an undirected graph
@@ -167,7 +166,7 @@ func bfs(_ start: Node) {
 
 #### BFS + shortest path
 
-Implementations with additional finding distance from the start and a path, and an important note here is that here we are discussing graphs without weights. If we want to find the shortest distance for a graph with weights, we need to consider another algorithm which is Dijktstra.
+Implementation with additional finding distance from the start node and printing a path (an important note here is that here we are discussing graphs without weights. If we want to find the shortest distance for a graph with weights, we need to consider another algorithm which is Dijktstra).
 
 
 ```swift
@@ -237,11 +236,11 @@ func dfs(_ root: TreeNode?) {
 
 #### Detecting cycle in a directed graph
 
-Undirected graphs are much more easier to handle because we don't care about direction of each edge. In this section I would like to show you how to detect the cycle in a directed graph and as well how to find a path for such a graph. 
+Undirected graphs are much more easier to handle, because we don't care about direction of each edge. In this section I would like to show you how to detect the cycle in a directed graph and as well how to find a path for detected cycle. 
 
 There is two options to find a cycle:
 
-1. DFS with finding cycle with coloring
+1. DFS with node coloring
 
 ```swift
 enum NodeState {
@@ -303,10 +302,10 @@ private func findCyclePath(_start: TreeNode?, end: TreeNode?) {
 }
 ```
 
-2. Alternate way for finding cycle with DFS with the usage of two arrays:
+2. Alternate way for finding cycle with DFS is the the usage of two arrays:
 
 - isVisited: [Bool]
-- inStack: [Bool] // track the item on which we go deep and then if we visited all branch then we need to clear it, or it syas taht we found a cycle
+- inStack: [Bool] // track the items on which we go deep and then if we visited all branch then we need to clear it or it says taht we found a cycle
 
 ```swift
 var visited: Set<Node> = []
