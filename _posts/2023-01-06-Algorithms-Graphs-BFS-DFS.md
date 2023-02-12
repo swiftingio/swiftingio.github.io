@@ -89,8 +89,7 @@ Is really important to understand how they work and when they are most useful (i
 As we said, the DFS is going branch by branch, is going deep as much as possible than it turns back and starts investigating a new branch. Having this in mind let's look at what could be the order of visiting nodes if we would start at node with id equal to 3:
 
 <p align="center">
-<img src="
-https://raw.githubusercontent.com/swiftingio/blog/%2357-Algorithms-DFS-BFS/DFS.svg" width="643">
+<img src="https://raw.githubusercontent.com/swiftingio/blog/%2357-Algorithms-DFS-BFS/DFS.svg" width="643">
 </p>
 
 Algorithm starts with the selection of some first branch and goes to the end (end means that encounters node with no other children, or all the children are already visited):
