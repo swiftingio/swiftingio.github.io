@@ -103,8 +103,7 @@ And then algorithm starts to vist the new unexplored branch, so it goes to node 
 The visualization shows that we go level by level and I think this is the best way how we can imaging the algorithm .
 
 <p align="center">
-<img src="
-https://raw.githubusercontent.com/swiftingio/blog/%2357-Algorithms-DFS-BFS/BFS.svg" width="643">
+<img src="https://raw.githubusercontent.com/swiftingio/blog/%2357-Algorithms-DFS-BFS/BFS.svg" width="643">
 </p>
 
 If we start with node id = 3 (first layer), then we visit 1 and 4 (second layer) then 2 (third layer) and last will be 5 (fourth layer).
