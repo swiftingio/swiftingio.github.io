@@ -70,7 +70,7 @@ Let's focus on the main subject of this post: Graph traversal algorithms. We can
 - DFS (Depth First Search)
 - BFS (Breadth First Search)
 
-Is really important to understand how they work and when they are most useful (in which use case). Below I tried to highlight the main features of both ones. I presented it in the table for a better understanding of the difference between them.
+It is really important to understand how they work and when they are most useful (in which use case). Below I tried to highlight the main features of both. I presented it in the table for a better understanding of the difference between them.
 
 |                                                      | DFS                                                          | BFS                                                          |
 | :--------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
