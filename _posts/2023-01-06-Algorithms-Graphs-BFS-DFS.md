@@ -140,6 +140,17 @@ func dfs(_ root: TreeNode?)  {
 #### BFS
 
 ```swift
+
+class TreeNode {
+	let id: Int
+	let children: [TreNode]
+	
+	init(_ id: Int, _ children: [TreNode] = []) {
+		self.id = id
+		self.children = children
+	}
+}
+
 func bfs(_ start: Node) {
 
 	var queue: [Node] = []
@@ -148,18 +159,17 @@ func bfs(_ start: Node) {
 	queue.append(start)
 
 	while !queue.isEmpty {
-  	for item in queue {
-    	let first = queue.removeFirst()
-   		for child in first.children {
+  		for item in queue {
+    		let first = queue.removeFirst()
+   			for child in first.children {
 				if !visited.contains(child) {
       				visited.insert(child)
-						queue.append(child)
-					}
+					queue.append(child)
 				}
 			}
 		}
-	}	
-}
+	}
+}	
 ```
 
 #### BFS + shortest path
@@ -224,7 +234,7 @@ func dfs(_ root: TreeNode?) {
 
 	for child in children {
 		if !visited.contains(child) {
-				dfs(child)
+			dfs(child)
 		} else if child != previous {
     		// here we can be sure that we don't have a cycle consists of two elements
 		}
@@ -244,7 +254,7 @@ There are two options to find a cycle:
 enum NodeState {
 	case unvisited
 	case visiting
-  case visited
+  	case visited
 }
 
 class TreeNode: Hashable {
@@ -253,18 +263,18 @@ class TreeNode: Hashable {
        return lhs.value  == rhs.value
    }
         
-    func hash(into hasher: inout Hasher) {
-       hasher.combine(value)
-      }
+   func hash(into hasher: inout Hasher) {
+   		hasher.combine(value)
+   }
         
-      let value: Int
-       var children: [TreeNode]
+   let value: Int
+   var children: [TreeNode]
         
-       init(value: Int, children: [TreeNode]) {
-           self.value = value
-           self.children = children
-        }
-    }
+   init(value: Int, children: [TreeNode]) {
+      self.value = value
+      self.children = children
+   }
+}
 
 var parent: [TreeNode: TreeNode?] = [:]
 var visited: [TreeNode: NodeState] = [:]
@@ -272,29 +282,28 @@ var visited: [TreeNode: NodeState] = [:]
 func dfs(_ root: TreeNode?) {	
 
   guard let root = root else {	
-		return
-	}
+	return
+  }
 
-	visited[root] = visiting
-	let children = root.children
-
+  visited[root] = visiting
+  let children = root.children
+ 
 	for child in children {
 		if visited[child] == unvisited {
-				dfs(child)
-				parent[child] = root
+			dfs(child)
+			parent[child] = root
 		} else if visited[child] == visiting {
 			findCyclePath(child, root)
 		}
 	}
-
 	visited[root] = .visited	
 }
 
 private func findCyclePath(_start: TreeNode?, end: TreeNode?) {
   	var path: [Int] = []
-		 var parentElement = start
+	var parentElement = start
   	while parentElement != end {
-    	  path.append(parentElement.id)
+   		path.append(parentElement.id)
       	parentElement = parent[parentElement]
     }
 }
@@ -310,8 +319,7 @@ var visited: Set<Node> = []
 var inStack: Set<Node> = []
 
 func dfs(_ root: TreeNode?, stack: [Node]) {	
-
-  guard let root = root else {	
+	guard let root = root else {	
 		return
 	}
 	
@@ -320,19 +328,18 @@ func dfs(_ root: TreeNode?, stack: [Node]) {
 
 	for child in children {
 		if !visited.contains(child) {
-				dfs(child, stack + child)
+			dfs(child, stack + child)
 		} else if inStack.contains(child) {
 	      print(stack)
 		}
-}
+	}
  
-inStack.remove(root)
-  
+	inStack.remove(root)
 }
   
 ```
 
 #### Summary
 
-Thank you for reading it! I hope it somehow was helpful to you. In terms of any questions please email me ;) 
+Thank you for reading it! I hope it somehow was helpful to you. In terms of any questions please email me: bartlomiej.woronin@gmail.com ;) 
 
