@@ -47,7 +47,7 @@ This matrix shows that element node 1 (columns 1) is connected with node 2 and 3
 
 Then node 2 (column 2) is connected with node 1, 4, 5 (that's why in row 1, 4 and 5 there is "1" in column 2), etc.
 
-To be honest I have never used matrix representation in any graph related problem, but for sure is good to know that exists this kind of representation.
+To be honest I have never used matrix representation in any graph related problem, but for sure it is good to know that this kind of representation exists.
 
 ### Very popular graph terms
 
