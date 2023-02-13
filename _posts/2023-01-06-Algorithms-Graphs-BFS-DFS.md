@@ -330,7 +330,7 @@ func dfs(_ root: TreeNode?, stack: [Node]) {
 		if !visited.contains(child) {
 			dfs(child, stack + child)
 		} else if inStack.contains(child) {
-	    	print(stack)
+			print(stack)
 		}
 	}
 	inStack.remove(root)
