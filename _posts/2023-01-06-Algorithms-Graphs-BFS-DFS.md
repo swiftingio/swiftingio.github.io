@@ -86,7 +86,7 @@ It is really important to understand how they work and when they are most useful
 
 #### DFS
 
-As we said, the DFS is going branch by branch, is going deep as much as possible than it turns back and starts investigating a new branch. Having this in mind let's look at what could be the order of visiting nodes if we would start at node with id equal to 3:
+As we said, the DFS is going branch by branch, is going deep as much as possible than it turns back and starts investigating a new branch. Having this in mind let's look at what could be the order of visiting nodes if we started from the node with an id equal to 3:
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/swiftingio/blog/%2357-Algorithms-DFS-BFS/DFS.svg" width="643">
