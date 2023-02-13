@@ -302,8 +302,8 @@ private func findCyclePath(_start: TreeNode?, end: TreeNode?) {
 
 2. Alternate way for finding cycle with DFS is the the usage of two arrays:
 
-- isVisited: [Bool]
-- inStack: [Bool] // track the items on which we go deep and then if we visited all branch then we need to clear it or it says taht we found a cycle
+- `var isVisited: [Bool]`
+- `var inStack: [Bool]` - used to track the items on which we go deep and then if we visited all branches then we need to clear it or it say that we found a cycle
 
 ```swift
 var visited: Set<Node> = []
