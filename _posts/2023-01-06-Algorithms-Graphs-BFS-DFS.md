@@ -231,7 +231,6 @@ func dfs(_ root: TreeNode?) {
 
 	visited.insert(root)
 	let children = root.children
-
 	for child in children {
 		if !visited.contains(child) {
 			dfs(child)
@@ -284,19 +283,19 @@ func dfs(_ root: TreeNode?) {
   guard let root = root else {	
 	return
   }
-
+  
   visited[root] = visiting
   let children = root.children
  
-	for child in children {
-		if visited[child] == unvisited {
-			dfs(child)
-			parent[child] = root
-		} else if visited[child] == visiting {
-			findCyclePath(child, root)
-		}
+  for child in children {
+	if visited[child] == unvisited {
+		dfs(child)
+		parent[child] = root
+	} else if visited[child] == visiting {
+		findCyclePath(child, root)
 	}
-	visited[root] = .visited	
+  }
+  visited[root] = .visited	
 }
 
 private func findCyclePath(_start: TreeNode?, end: TreeNode?) {
