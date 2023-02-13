@@ -147,7 +147,7 @@ func bfs(_ start: Node) {
 
 	queue.append(start)
 
-	while !queue.isEmpty { // maybe then this while is not needed anymore (worth to check)
+	while !queue.isEmpty {
   	for item in queue {
     	let first = queue.removeFirst()
    		for child in first.children {
