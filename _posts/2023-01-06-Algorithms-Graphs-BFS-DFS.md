@@ -57,7 +57,7 @@ To be honest I have never used matrix representation in any graph related proble
 <img src="https://raw.githubusercontent.com/swiftingio/blog/%2357-Algorithms-DFS-BFS/Cycle.svg" width="643">
 </p>
 
-- **Connected component (cc)**: we can imagine connected component as a lonly island which is not connected to other lands. There exist algorithms for finding connected components in the graph. I hope in the future as well write more about it in the sepearated post.
+- **Connected component (cc)**: we can imagine a connected component as a lonely island which is not connected to other lands. There exist algorithms for finding connected components in the graph. I hope in the future I will write more about it in a separate post.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/swiftingio/blog/%2357-Algorithms-DFS-BFS/ConnectedComponents.svg" width="643">
