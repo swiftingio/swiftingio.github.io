@@ -20,7 +20,7 @@ Graphs for beginners seem really hard, but the truth is that they are not so dif
   
 ### Graph representation
 
-Typically we represent a graph by adjacency list (is the most popular option). Every node has a list pointing to another nodes to which has a connection. For an implementation point of view we can use for that a dicionary.
+Typically we represent a graph by adjacency list (it is the most popular option). Every node has a list pointing to other nodes to which it has a connection. For an implementation point of view we can use for that a dictionary.
 
 For example, we can construct a adjacancy list like this:
 
