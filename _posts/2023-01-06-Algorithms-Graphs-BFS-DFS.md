@@ -22,7 +22,7 @@ Graphs for beginners seem really hard, but the truth is that they are not so dif
 
 Typically we represent a graph by adjacency list (it is the most popular option). Every node has a list pointing to other nodes to which it has a connection. For an implementation point of view we can use for that a dictionary.
 
-For example, we can construct a adjacancy list like this:
+For example, we can construct an adjacency list like this:
 
 ```swift
 var adjList: [Int: [Int]] = [:]
