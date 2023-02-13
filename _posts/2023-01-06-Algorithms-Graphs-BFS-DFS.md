@@ -236,7 +236,7 @@ func dfs(_ root: TreeNode?) {
 
 Undirected graphs are much more easier to handle, because we don't care about direction of each edge. In this section I would like to show you how to detect the cycle in a directed graph and as well how to find a path for detected cycle. 
 
-There is two options to find a cycle:
+There are two options to find a cycle:
 
 1. DFS with node coloring
 
