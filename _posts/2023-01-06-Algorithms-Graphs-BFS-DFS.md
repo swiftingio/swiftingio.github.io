@@ -163,7 +163,7 @@ func bfs(_ start: Node) {
   		let first = queue.removeFirst()
    			for child in first.children {
 				if !visited.contains(child) {
-      				visited.insert(child)
+					visited.insert(child)
 					queue.append(child)
 				}
 			}
