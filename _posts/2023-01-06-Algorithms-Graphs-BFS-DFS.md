@@ -51,7 +51,7 @@ To be honest I have never used matrix representation in any graph related proble
 
 ### Very popular graph terms
 
-- **Cycle**: if within a graph we travel and meet the visited node once again: it means that we have a cycle in the graph. Is quite intersing topic, becuase first of all we can ask ourselves: what algorithm should we choose? DFS or BFS? Then to make things more complicated how to find a path of the cycle?
+- **Cycle**: if within a graph we travel and meet the visited node once again: it means that we have a cycle in the graph. Finding a path of a cycle can be complicated and we can use an algorithm to do that (BFS or DFS - more about them in further parts of the article).
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/swiftingio/blog/%2357-Algorithms-DFS-BFS/Cycle.svg" width="643">
