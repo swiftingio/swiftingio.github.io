@@ -160,7 +160,7 @@ func bfs(_ start: Node) {
 
 	while !queue.isEmpty {
   		for item in queue {
-    		let first = queue.removeFirst()
+  		let first = queue.removeFirst()
    			for child in first.children {
 				if !visited.contains(child) {
       				visited.insert(child)
@@ -191,8 +191,8 @@ func bfs(_ start: Node) {
 			let first = queue.removeFirst()
 			for child in first.children {
 				if !visited.contains(child) {
-    	    		dist[child] = dist[item] + 1
-    	    		parent[child] = item 
+					dist[child] = dist[item] + 1
+					parent[child] = item 
   					visited.insert(child)
 					queue.append(child)
 				}
@@ -225,9 +225,9 @@ var visited: Set<Node> = []
 
 func dfs(_ root: TreeNode?) {	
 
-  guard let root = root else {	
+	guard let root = root else {
 		return
-	}
+  	}
 
 	visited.insert(root)
 	let children = root.children
@@ -260,11 +260,11 @@ enum NodeState {
 class TreeNode: Hashable {
         
    static func == (lhs: FindCycleWithColor2.TreeNode, rhs: FindCycleWithColor2.TreeNode) -> Bool {
-       return lhs.value  == rhs.value
+   	return lhs.value  == rhs.value
    }
         
    func hash(into hasher: inout Hasher) {
-   		hasher.combine(value)
+   	hasher.combine(value)
    }
         
    let value: Int
@@ -303,8 +303,8 @@ private func findCyclePath(_start: TreeNode?, end: TreeNode?) {
   	var path: [Int] = []
 	var parentElement = start
   	while parentElement != end {
-   		path.append(parentElement.id)
-      	parentElement = parent[parentElement]
+  		path.append(parentElement.id)
+  		parentElement = parent[parentElement]
     }
 }
 ```
