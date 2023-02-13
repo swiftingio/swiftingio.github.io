@@ -113,8 +113,8 @@ If we start with node id = 3 (first layer), then we visit 1 and 4 (second layer)
 Having this knowledge let's implement DFS and BFS in Swift. Additionally let's take a look at some additional topics which are very interesting as well:
 
 - Finding the shortest path with unweighted graph
-- Finding cycle in an undirected graph
-- Finding cycle in a directed graph
+- Finding a cycle in an undirected graph
+- Finding a cycle in a directed graph
 
 #### DFS
 
