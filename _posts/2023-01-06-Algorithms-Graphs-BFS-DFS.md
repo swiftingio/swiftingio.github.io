@@ -92,7 +92,7 @@ As we said, the DFS is going branch by branch, is going deep as much as possible
 <img src="https://raw.githubusercontent.com/swiftingio/blog/%2357-Algorithms-DFS-BFS/DFS.svg" width="643">
 </p>
 
-Algorithm starts with the selection of some first branch and goes to the end (end means that encounters node with no other children, or all the children are already visited):
+Algorithm starts with the selection of some first branch and goes to the end (end means that the algorithm encounters a node with no other children, or all the children are already visited):
 
 Node 5 has no other children so we come back to the place when it can check another branch (it this case it will be a node 3)
 
