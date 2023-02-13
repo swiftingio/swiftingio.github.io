@@ -174,7 +174,7 @@ func bfs(_ start: Node) {
 
 #### BFS + shortest path
 
-Implementation with additional finding distance from the start node and printing a path (an important note here is that here we are discussing graphs without weights. If we want to find the shortest distance for a graph with weights, we need to consider another algorithm like [Dijktstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)).
+Implementation with additional finding distance from the start node and printing a path (an important note here is that here we are discussing unweighted graphs. If we want to find the shortest distance for a weighted graph, we need to consider another algorithm like [Dijktstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)).
 
 
 ```swift
