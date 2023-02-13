@@ -45,7 +45,7 @@ The second option to represent a graph is a matrix:
 
 This matrix shows that element node 1 (columns 1) is connected with node 2 and 3 (so that's why row 2 and row 4 has ones in column 1).
 
-Then node 2 (column 2) is connected with node 1, 4, 5 (that's why in row 1, 4 and 5 have ones in column 2), etc.
+Then node 2 (column 2) is connected with node 1, 4, 5 (that's why in row 1, 4 and 5 there is "1" in column 2), etc.
 
 To be honest I have never used matrix representation in any graph related problem, but for sure is good to know that exists this kind of representation.
 
