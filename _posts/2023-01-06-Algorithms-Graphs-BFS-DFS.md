@@ -108,7 +108,7 @@ The visualization shows that we go level by level and I think this is the best w
 
 If we start with node id = 3 (first layer), then we visit 1 and 4 (second layer) then 2 (third layer) and last will be 5 (fourth layer).
 
-### Impmenenation
+### Implementation
 
 Having this knowledge let's implement DFS and BFS in Swift. Additionally let's take a look at some additional topics which are very interesting as well:
 
