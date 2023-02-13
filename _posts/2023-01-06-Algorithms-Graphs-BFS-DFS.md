@@ -78,7 +78,7 @@ It is really important to understand how they work and when they are most useful
 | **Implementation**                                   | Using recursion (iterative as well but definitely less popular and used) | Iterative                                                    |
 | **Data structure used for iterative implementation** | Stack                                                        | Queue                                                        |
 | **Visiting nodes order**                             | Branch by branch (so it goes by depth as much as possible, then it switches to the next branch) | It visits the nodes level by level. First, it starts with the nearest neighborhood of starting node and then it goes to the next level etc. |
-| **Cyclce detection**                                 | Commonly used for cycle detection                            | Not very efficient for finding a cycle in the graph.        |
+| **Cycle detection**                                 | Commonly used for cycle detection                            | Not very efficient for finding a cycle in the graph.        |
 | **Complexity**                                       | O(V+ E)                                                      | O(V+ E)                                                      |
 | **Practice**                                         | - https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/description/ | https://leetcode.com/problems/minimum-genetic-mutation/solution/    https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/ |
 
