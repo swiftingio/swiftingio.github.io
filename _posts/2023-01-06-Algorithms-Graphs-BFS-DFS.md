@@ -141,14 +141,9 @@ func dfs(_ root: TreeNode?)  {
 
 ```swift
 
-class TreeNode {
+struct TreeNode {
 	let id: Int
 	let children: [TreNode]
-	
-	init(_ id: Int, _ children: [TreNode] = []) {
-		self.id = id
-		self.children = children
-	}
 }
 
 func bfs(_ start: Node) {
