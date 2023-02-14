@@ -217,7 +217,7 @@ func getPath(_ target: Node, _ start: Node) {
 ```
 
 
-#### Detecting cycle in undirected graph
+#### Detecting cycle in an undirected graph
 
 ```swift
 
