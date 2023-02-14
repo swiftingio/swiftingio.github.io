@@ -244,7 +244,7 @@ func dfs(_ root: TreeNode?, stack: [Int]) {
 
 #### Detecting cycle in a directed graph
 
-Undirected graphs are much more easier to handle, because we don't care about direction of each edge. In this section I would like to show you how to detect the cycle in a directed graph and as well how to find a path for detected cycle. 
+Undirected graphs are much easier to handle, because we don't care about direction of each edge. In this section I would like to show you how to detect a cycle in a directed graph and as well how to find a path for the detected cycle. 
 
 There are two options to find a cycle:
 
