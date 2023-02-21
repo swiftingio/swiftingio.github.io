@@ -119,18 +119,25 @@ Having this knowledge let's implement DFS and BFS in Swift. Additionally let's t
 #### DFS
 
 ```swift
+
+// This struct will be used later in every algorithm
+struct Node {
+	let id: Int
+	let children: [Node]
+}
+
 var visited: Set<Int> = []
 
-func dfs(_ root: TreeNode?)  {
+func dfs(_ root: Node?)  {
 
 	guard let root = root else {
 		return
 	}
 
-	visited.insert(root.val)
+	visited.insert(root.id)
 
 	for child in root.children {
-		if !visited.contains(child.val) {
+		if !visited.contains(child.id) {
 			dfs(child)
 		}
 	}
@@ -141,15 +148,10 @@ func dfs(_ root: TreeNode?)  {
 
 ```swift
 
-struct TreeNode {
-	let id: Int
-	let children: [TreNode]
-}
-
 func bfs(_ start: Node) {
 
 	var queue: [Node] = []
-	var visited: Set<Node> = []
+	var visited: Set<Int> = []
 
 	queue.append(start)
 
@@ -157,8 +159,8 @@ func bfs(_ start: Node) {
   		for item in queue {
   		let first = queue.removeFirst()
    			for child in first.children {
-				if !visited.contains(child) {
-					visited.insert(child)
+				if !visited.contains(child.id) {
+					visited.insert(child.id)
 					queue.append(child)
 				}
 			}
@@ -173,41 +175,44 @@ Implementation with additional finding distance from the start node and printing
 
 
 ```swift
+
+var parent: [Int: Int] = [:]
+
 func bfs(_ start: Node) {
-	var queue: [Node] = []
-	var visited: Set<Node> = []
-	var distance: [Node: Int] = [:]
-	var parent: [Node: Node] = [:]
+    var queue: [Int] = []
+    var visited: Set<Int> = []
+    var distance: [Int: Int] = [:]
 
-	queue.append(start)
+    queue.append(start.id)
 
-	while !queue.isEmpty {
-		for item in queue {
-			let first = queue.removeFirst()
-			for child in first.children {
-				if !visited.contains(child) {
-					dist[child] = dist[item] + 1
-					parent[child] = item 
-  					visited.insert(child)
-					queue.append(child)
-				}
-			}
-		}
-	}
+    while !queue.isEmpty {
+        for item in queue {
+            let first = queue.removeFirst()
+            for child in adjList[first] {
+                if !visited.contains(child.id) {
+                    distance[child.id] = distance[item.id, default: 0] + 1
+                    parent[child.id, default: 0] = item
+                    visited.insert(child.id)
+                    queue.append(child)
+                }
+            }
+        }
+    }
 }
 
+
 func getPath(_ target: Node, _ start: Node) {
-  var x = target
-  var path: [Int] = []
-  
-  path.append(target)
-  
-  while x != start {
-    x = parent[x]
-    path.append(x)
-  }
-  
-  path.reverse()
+    var x = target.id
+    var path: [Int] = []
+    
+    path.append(target.id)
+    
+    while x != start.id {
+        x = parent[x.id]
+        path.append(x)
+    }
+    
+    path.reverse()
 }
 ```
 
@@ -218,7 +223,7 @@ func getPath(_ target: Node, _ start: Node) {
 
 var visited: Set<Node> = []
 
-func dfs(_ root: TreeNode?, stack: [Int]) {	
+func dfs(_ root: Node?, stack: [Int]) {	
 
 	guard let root = root else {
 		return
@@ -247,61 +252,43 @@ There are two options to find a cycle:
 
 ```swift
 enum NodeState {
-	case unvisited
-	case visiting
-  	case visited
+    case unvisited
+    case visiting
+    case visited
 }
 
-class TreeNode: Hashable {
-        
-   static func == (lhs: FindCycleWithColor2.TreeNode, rhs: FindCycleWithColor2.TreeNode) -> Bool {
-   	return lhs.value  == rhs.value
-   }
-        
-   func hash(into hasher: inout Hasher) {
-   	hasher.combine(value)
-   }
-        
-   let value: Int
-   var children: [TreeNode]
-        
-   init(value: Int, children: [TreeNode]) {
-      self.value = value
-      self.children = children
-   }
+var parent: [Int: Int?] = [:]
+var visited: [Int: NodeState] = [:]
+
+func dfs2(_ root: Node?) {
+    
+    guard let root = root else {
+        return
+    }
+    
+    visited[root.id] = .visiting
+    let children = root.children
+    
+    for child in children {
+        if visited[child.id] == .unvisited {
+            dfs2(child)
+            parent[child.id] = root.id
+        } else if visited[child.id] == .visiting {
+            findCyclePath(child, root)
+        }
+    }
+    visited[root.id] = .visited
 }
 
-var parent: [TreeNode: TreeNode?] = [:]
-var visited: [TreeNode: NodeState] = [:]
-
-func dfs(_ root: TreeNode?) {	
-
-  guard let root = root else {	
-	return
-  }
-  
-  visited[root] = visiting
-  let children = root.children
- 
-  for child in children {
-	if visited[child] == unvisited {
-		dfs(child)
-		parent[child] = root
-	} else if visited[child] == visiting {
-		findCyclePath(child, root)
-	}
-  }
-  visited[root] = .visited	
-}
-
-private func findCyclePath(_start: TreeNode?, end: TreeNode?) {
-  	var path: [Int] = []
-	var parentElement = start
-  	while parentElement != end {
-  		path.append(parentElement.id)
-  		parentElement = parent[parentElement]
+private func findCyclePath(_ start: Node?, _ end: Node) {
+    var path: [Int?] = []
+    var parentElement: Int? = start?.id
+    while parentElement != nil && parentElement != end.id {
+        path.append(parentElement)
+        parentElement = parent[parentElement!, default: 0]
     }
 }
+
 ```
 
 2. Alternate way for finding cycle with DFS is the the usage of two arrays:
@@ -310,27 +297,29 @@ private func findCyclePath(_start: TreeNode?, end: TreeNode?) {
 - `var inStack: [Bool]` - used to track the items on which we go deep and then if we visited all branches then we need to clear it or it say that we found a cycle
 
 ```swift
-var visited: Set<Node> = []
-var inStack: Set<Node> = []
+var visited: Set<Int> = []
+var inStack: Set<Int> = []
 
-func dfs(_ root: TreeNode?, stack: [Node]) {	
-	guard let root = root else {	
-		return
-	}
-	
-	visited.insert(root)
-	let children = root.children
-
-	for child in children {
-		if !visited.contains(child) {
-			dfs(child, stack + child)
-		} else if inStack.contains(child) {
-			print(stack)
-		}
-	}
-	inStack.remove(root)
-}
-  
+func dfs(_ root: Node?, _ stack: [Node]) {
+    guard let root = root else {
+        return
+    }
+    
+    inStack.insert(root.id)
+    visited.insert(root.id)
+    let children = root.children
+    
+    for child in children {
+        if !visited.contains(child.id) {
+            var newStack = stack
+            newStack.append(child)
+            dfs(child, newStack)
+        } else if inStack.contains(child.id) {
+            print(stack)
+        }
+    }
+    inStack.remove(root.id)
+} 
 ```
 
 #### Summary
