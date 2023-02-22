@@ -149,24 +149,23 @@ func dfs(_ root: Node?)  {
 ```swift
 
 func bfs(_ start: Node) {
-
-	var queue: [Node] = []
-	var visited: Set<Int> = []
-
-	queue.append(start)
-
-	while !queue.isEmpty {
-  		for item in queue {
-  		let first = queue.removeFirst()
-   			for child in first.children {
-				if !visited.contains(child.id) {
-					visited.insert(child.id)
-					queue.append(child)
-				}
-			}
-		}
-	}
-}	
+    var queue: [Node] = []
+    var visited: Set<Int> = []
+    
+    queue.append(start)
+    
+    while !queue.isEmpty {
+        for item in queue {
+            let first = queue.removeFirst()
+            for child in first.children {
+                if !visited.contains(child.id) {
+                    visited.insert(child.id)
+                    queue.append(child)
+                }
+            }
+        }
+    }
+}
 ```
 
 #### BFS + shortest path
@@ -182,13 +181,13 @@ func bfs(_ start: Node) {
     var queue: [Int] = []
     var visited: Set<Int> = []
     var distance: [Int: Int] = [:]
-
+    
     queue.append(start.id)
-
+    
     while !queue.isEmpty {
         for item in queue {
             let first = queue.removeFirst()
-            for child in adjList[first] {
+            for child in first.children {
                 if !visited.contains(child.id) {
                     distance[child.id] = distance[item.id, default: 0] + 1
                     parent[child.id, default: 0] = item
@@ -199,7 +198,6 @@ func bfs(_ start: Node) {
         }
     }
 }
-
 
 func getPath(_ target: Node, _ start: Node) {
     var x = target.id
@@ -221,25 +219,27 @@ func getPath(_ target: Node, _ start: Node) {
 
 ```swift
 
-var visited: Set<Node> = []
+var visited: Set<Int> = []
 
-func dfs(_ root: Node?, stack: [Int], _ previous: Node?) {	
+func dfs(_ root: Node?, _ stack: [Int], _ previous: Node?) {
 
-	guard let root = root else {
-		return
-  	}
+    guard let root = root else {
+        return
+      }
 
-	visited.insert(root)
-	let children = root.children
-	for child in children {
-		if !visited.contains(child) {
-			dfs(child, stack + child, root)
-		} else if child != previous {
-    		// here we can be sure that we don't have a cycle which consists of only two elements
-    		// and then we can print stack starting from child
-    		getPath(root, child)
-		}
-	}
+    visited.insert(root.id)
+    let children = root.children
+    for child in children {
+        if !visited.contains(child.id) {
+            var newStack = stack
+            newStack.append(child.id)
+            dfs(child, newStack, root)
+        } else if child.id != previous?.id {
+            // here we can be sure that we don't have a cycle which consists of only two elements
+            // and then we can print stack starting from child
+            getPath(root, child)
+        }
+    }
 }
 ```
 
