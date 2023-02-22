@@ -15,7 +15,7 @@ Graphs for beginners seem really hard, but the truth is that they are not so dif
 - Example of the graph you can see here (Undirected Cyclic Graph):
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/swiftingio/blog/%2357-Algorithms-DFS-BFS/Graph.svg " width="643">
+<img src="https://raw.githubusercontent.com/swiftingio/blog/%2357-Algorithms-DFS-BFS/Graph.svg" width="643">
 </p>
   
 ### Graph representation
