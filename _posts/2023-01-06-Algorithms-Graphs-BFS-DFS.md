@@ -200,17 +200,17 @@ func bfs(_ start: Node) {
 }
 
 func getPath(_ target: Node, _ start: Node) {
-    var x = target.id
-    var path: [Int] = []
-    
-    path.append(target.id)
-    
-    while x != start.id {
-        x = parent[x.id]
-        path.append(x)
-    }
-    
-    path.reverse()
+        var x = target.id
+        var path: [Int] = []
+        
+        path.append(target.id)
+        
+        while x != start.id {
+            x = parent[x]!
+            path.append(x)
+        }
+        path.reverse()
+        print("Path: ", path)
 }
 ```
 
