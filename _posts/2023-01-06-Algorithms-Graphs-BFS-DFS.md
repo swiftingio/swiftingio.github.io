@@ -223,7 +223,7 @@ func getPath(_ target: Node, _ start: Node) {
 
 var visited: Set<Node> = []
 
-func dfs(_ root: Node?, stack: [Int]) {	
+func dfs(_ root: Node?, stack: [Int], _ previous: Node?) {	
 
 	guard let root = root else {
 		return
@@ -233,10 +233,11 @@ func dfs(_ root: Node?, stack: [Int]) {
 	let children = root.children
 	for child in children {
 		if !visited.contains(child) {
-			dfs(child, stack + child)
+			dfs(child, stack + child, root)
 		} else if child != previous {
-    		// here we can be sure that we don't have a cycle consists of only two elements
+    		// here we can be sure that we don't have a cycle which consists of only two elements
     		// and then we can print stack starting from child
+    		getPath(root, child)
 		}
 	}
 }
