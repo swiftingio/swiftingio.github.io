@@ -149,7 +149,7 @@ func dfs(_ root: Node?)  {
 }
 ```
 
-Download playgraound from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/DFS.playground/Contents.swift).
+Download playground from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/DFS.playground/Contents.swift).
 
 #### BFS
 
@@ -176,7 +176,7 @@ func bfs(_ start: Node) {
 }
 ```
 
-Download playgraound from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/BFS.playground/Contents.swift).
+Download playground from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/BFS.playground/Contents.swift).
 
 #### BFS + shortest path
 
@@ -226,7 +226,7 @@ func getPath(_ target: Node, _ start: Node) {
 }
 ```
 
-Download playgraound from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/BFS%2BShortestPath.playground/Contents.swift).
+Download playground from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/BFS%2BShortestPath.playground/Contents.swift).
 
 #### Detecting cycle in an undirected graph
 
@@ -258,7 +258,7 @@ func dfs(_ root: Node?, _ previous: Node?) {
 }
 ```
 
-Download playgraound from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/DetectingCycleInAnUndirectedGraph.playground/Contents.swift).
+Download playground from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/DetectingCycleInAnUndirectedGraph.playground/Contents.swift).
 
 #### Detecting cycle in a directed graph
 
@@ -312,7 +312,7 @@ private func findCyclePath(_ start: Node?, _ end: Node) {
 
 ```
 
-Download playgraound from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/DetectingCycleInDirectedGraphColoring.playground/Contents.swift).
+Download playground from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/DetectingCycleInDirectedGraphColoring.playground/Contents.swift).
 
 
 2. Alternate way for finding cycle with DFS is the the usage of two arrays:
@@ -348,7 +348,7 @@ func dfs(_ root: Node?, _ stack: [Node]) {
 }  
 ```
 
-Download playgraound from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/DetectingCycleInDirectedGraphArrays.playground/Contents.swift).
+Download playground from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/DetectingCycleInDirectedGraphArrays.playground/Contents.swift).
 
 #### Summary
 
