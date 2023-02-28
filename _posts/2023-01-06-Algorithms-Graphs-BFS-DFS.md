@@ -120,10 +120,15 @@ Having this knowledge let's implement DFS and BFS in Swift. Additionally let's t
 
 ```swift
 
-// This struct will be used later in every algorithm
-struct Node {
-	let id: Int
-	let children: [Node]
+// This class will be used later in every algorithm
+class Node {
+    let id: Int
+    var children: [Node]
+    
+    init(id: Int, children: [Node] = []) {
+        self.id = id
+        self.children = children
+    }
 }
 
 var visited: Set<Int> = []
@@ -144,6 +149,8 @@ func dfs(_ root: Node?)  {
 }
 ```
 
+Download playgraound from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/DFS.playground/Contents.swift).
+
 #### BFS
 
 ```swift
@@ -152,6 +159,7 @@ func bfs(_ start: Node) {
     var queue: [Node] = []
     var visited: Set<Int> = []
     
+    visited.insert(start.id)
     queue.append(start)
     
     while !queue.isEmpty {
@@ -168,6 +176,8 @@ func bfs(_ start: Node) {
 }
 ```
 
+Download playgraound from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/BFS.playground/Contents.swift).
+
 #### BFS + shortest path
 
 Implementation with additional finding distance from the start node and printing a path (an important note here is that here we are discussing unweighted graphs. If we want to find the shortest distance for a weighted graph, we need to consider another algorithm like [Dijktstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)).
@@ -178,11 +188,12 @@ Implementation with additional finding distance from the start node and printing
 var parent: [Int: Int] = [:]
 
 func bfs(_ start: Node) {
-    var queue: [Int] = []
+    var queue: [Node] = []
     var visited: Set<Int> = []
     var distance: [Int: Int] = [:]
     
-    queue.append(start.id)
+    visited.insert(start.id)
+    queue.append(start)
     
     while !queue.isEmpty {
         for item in queue {
@@ -190,12 +201,13 @@ func bfs(_ start: Node) {
             for child in first.children {
                 if !visited.contains(child.id) {
                     distance[child.id] = distance[item.id, default: 0] + 1
-                    parent[child.id, default: 0] = item
+                    parent[child.id, default: 0] = item.id
                     visited.insert(child.id)
                     queue.append(child)
                 }
             }
         }
+        
     }
 }
 
@@ -206,7 +218,7 @@ func getPath(_ target: Node, _ start: Node) {
     path.append(target.id)
     
     while x != start.id {
-        x = parent[x.id]
+        x = parent[x, default: 0]
         path.append(x)
     }
     
@@ -214,34 +226,39 @@ func getPath(_ target: Node, _ start: Node) {
 }
 ```
 
+Download playgraound from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/BFS%2BShortestPath.playground/Contents.swift).
 
 #### Detecting cycle in an undirected graph
 
 ```swift
 
 var visited: Set<Int> = []
+var parent: [Int: Int] = [:]
 
-func dfs(_ root: Node?, _ stack: [Int], _ previous: Node?) {
+func dfs(_ root: Node?, _ previous: Node?) {
 
     guard let root = root else {
         return
       }
 
     visited.insert(root.id)
+    
     let children = root.children
     for child in children {
         if !visited.contains(child.id) {
-            var newStack = stack
-            newStack.append(child.id)
-            dfs(child, newStack, root)
+            parent[child.id] = root.id
+            dfs(child, root)
         } else if child.id != previous?.id {
             // here we can be sure that we don't have a cycle which consists of only two elements
             // and then we can print stack starting from child
             getPath(root, child)
+            return
         }
     }
 }
 ```
+
+Download playgraound from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/DetectingCycleInAnUndirectedGraph.playground/Contents.swift).
 
 #### Detecting cycle in a directed graph
 
@@ -261,7 +278,7 @@ enum NodeState {
 var parent: [Int: Int?] = [:]
 var visited: [Int: NodeState] = [:]
 
-func dfs2(_ root: Node?) {
+func dfs(_ root: Node?) {
     
     guard let root = root else {
         return
@@ -269,13 +286,15 @@ func dfs2(_ root: Node?) {
     
     visited[root.id] = .visiting
     let children = root.children
-    
+        
     for child in children {
+        parent[child.id] = root.id
+
         if visited[child.id] == .unvisited {
-            dfs2(child)
-            parent[child.id] = root.id
+            dfs(child)
         } else if visited[child.id] == .visiting {
-            findCyclePath(child, root)
+            findCyclePath(root, child)
+            return
         }
     }
     visited[root.id] = .visited
@@ -284,6 +303,7 @@ func dfs2(_ root: Node?) {
 private func findCyclePath(_ start: Node?, _ end: Node) {
     var path: [Int?] = []
     var parentElement: Int? = start?.id
+    path.append(end.id)
     while parentElement != nil && parentElement != end.id {
         path.append(parentElement)
         parentElement = parent[parentElement!, default: 0]
@@ -291,6 +311,9 @@ private func findCyclePath(_ start: Node?, _ end: Node) {
 }
 
 ```
+
+Download playgraound from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/DetectingCycleInDirectedGraphColoring.playground/Contents.swift).
+
 
 2. Alternate way for finding cycle with DFS is the the usage of two arrays:
 
@@ -316,12 +339,16 @@ func dfs(_ root: Node?, _ stack: [Node]) {
             newStack.append(child)
             dfs(child, newStack)
         } else if inStack.contains(child.id) {
-            print(stack)
+            var path = stack
+            path.append(child)
+            print(path.map { $0.id })
         }
     }
     inStack.remove(root.id)
-} 
+}  
 ```
+
+Download playgraound from [here](https://github.com/woroninb/GraphTraversalAlgorithms/blob/main/DetectingCycleInDirectedGraphArrays.playground/Contents.swift).
 
 #### Summary
 
