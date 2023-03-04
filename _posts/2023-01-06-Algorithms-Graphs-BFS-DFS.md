@@ -1,3 +1,11 @@
+---
+layout: post
+author: bartek
+title: \#57 Graph traversal algorithms: BFS & DFS.
+excerpt: If you would like to start learn graph algotithms I hope this post can help you with finding some basic information about it. With shared playthrounds and examples you can check them it action by yourself.
+
+---
+
 # Graph traversal algorithms: BFS & DFS
 
 ### Intro
