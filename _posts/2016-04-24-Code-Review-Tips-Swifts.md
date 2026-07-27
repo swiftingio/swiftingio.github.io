@@ -4,7 +4,7 @@ author: maciej
 title: \#14 Code Review – Tips & Swifts
 excerpt: 
 ---
-Last week, in [issue \#13](https://swifting.io/blog/2016/04/18/13-code-review-are-we-too-busy-to-improve/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), we introduced a definition of **Code Review**. Today we'll get deeper into the topic, present some tips & swifts & tricks when performing a review and focus on some mistakes found when reviewing a 🐦**Swift** code.
+Last week, in [issue \#13](https://swiftingio.github.io/blog/2016/04/18/13-code-review-are-we-too-busy-to-improve/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), we introduced a definition of **Code Review**. Today we'll get deeper into the topic, present some tips & swifts & tricks when performing a review and focus on some mistakes found when reviewing a 🐦**Swift** code.
 
 #### General Tips 🔍
 
@@ -12,7 +12,7 @@ It is said that a review goes best when conducted on less than 400 lines of code
 
 After some years of experience in software development you know what common programming mistakes are. You also do realise what solutions to common problems are most efficient. It's a good practice to write it down and to check code being reviewed against a **checklist** ✅ - it leads improved results. Checklists are especially important for reviewers because, if the author forgets a task, the reviewer is likely to miss it too.
 
-In the git flow mentioned in [issue \#13](https://swifting.io/blog/2016/04/18/13-code-review-are-we-too-busy-to-improve/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), code can get merged after receiving agreed number of **approvals** for a pull request. The number should depend on your team size, but it's good to get at least 1️⃣ !😀
+In the git flow mentioned in [issue \#13](https://swiftingio.github.io/blog/2016/04/18/13-code-review-are-we-too-busy-to-improve/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), code can get merged after receiving agreed number of **approvals** for a pull request. The number should depend on your team size, but it's good to get at least 1️⃣ !😀
 
 When you recommend fixes to the code, suggest their **importance** 💬. Maybe some of them could be postponed and extracted as separate tasks. Before approving a pull request, **verify** that defects are **fixed** 🔧🔨.
 
@@ -39,7 +39,7 @@ Much better things to look for should be a part of your checklist. When I scruti
 - if *method* names *express* what they do
 - if a file contains *commented out* code
 - if a file contains a single *class* (this one is arguable, depends on agreement with your team and company's guidelines)
-- for code *duplication*, *function length* and *class length* < x lines - [SwiftLint](https://github.com/realm/SwiftLint?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) or [codebeat](https://codebeat.co?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) mentioned in  [issue \#11](https://swifting.io/blog/2016/03/29/11-swiftlint/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) and [issue \#10](https://swifting.io/blog/2016/03/21/10-is-christmas-earlier-this-year-code-quality-analyser-abc/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) is an option to point out such a code without your participation
+- for code *duplication*, *function length* and *class length* < x lines - [SwiftLint](https://github.com/realm/SwiftLint?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) or [codebeat](https://codebeat.co?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) mentioned in  [issue \#11](https://swiftingio.github.io/blog/2016/03/29/11-swiftlint/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) and [issue \#10](https://swiftingio.github.io/blog/2016/03/21/10-is-christmas-earlier-this-year-code-quality-analyser-abc/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) is an option to point out such a code without your participation
 
 When performing a review, one can also get extra points 💎 for pointing out a more *efficient implementation* of used algorithm 😉.
 

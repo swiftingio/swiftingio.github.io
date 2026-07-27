@@ -2,14 +2,14 @@
 layout: post
 author: michal
 title: \#16 Parse Server – 100 days later
-excerpt: 
+excerpt:
 ---
-Around 100 days ago, Parse.com announced its [shut down](http://blog.parse.com/announcements/moving-on/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) on 28th of January 2017. At the same time an open sourced [Parse Server](http://blog.parse.com/announcements/introducing-parse-server-and-the-database-migration-tool/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) was born. Team advised to migrate databases until the end of April 2016 and to move services to self hosted instances by the end of June 2016. By following this guidance developers are to avoid procrastination and have plenty of time for transition and pointing their apps to new endpoints. 
+Around 100 days ago, Parse.com announced its [shut down](http://blog.parse.com/announcements/moving-on/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) on 28th of January 2017. At the same time an open sourced [Parse Server](http://blog.parse.com/announcements/introducing-parse-server-and-the-database-migration-tool/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) was born. Team advised to migrate databases until the end of April 2016 and to move services to self hosted instances by the end of June 2016. By following this guidance developers are to avoid procrastination and have plenty of time for transition and pointing their apps to new endpoints.
 
 #### Community
 
-Facing additional work, limited features and additional costs, some may have left Parse.com platform. However, many saw an opportunity in a newborn Parse Server. Blogs started to write extensive tutorials about migration, missing features and ideas for the future of the platform. 
-We did not give up on Parse Server either. In [issue \#4](https://swifting.io/blog/2016/02/08/4-migrartion-from-parse-to-heroku/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), we have covered a migration from Parse.com to Heroku and mLab Mongo as a service provider. 
+Facing additional work, limited features and additional costs, some may have left Parse.com platform. However, many saw an opportunity in a newborn Parse Server. Blogs started to write extensive tutorials about migration, missing features and ideas for the future of the platform.
+We did not give up on Parse Server either. In [issue \#4](https://swiftingio.github.io/blog/2016/02/08/4-migrartion-from-parse-to-heroku/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), we have covered a migration from Parse.com to Heroku and mLab Mongo as a service provider.
 
 ![Parse Server github](https://raw.githubusercontent.com/swiftingio/blog/%2316-Parse-100-days-later/%2316%20Parse%20100%20days%20after/parse-server-github.png?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
@@ -22,14 +22,14 @@ I really like a little table Fosco Marotto placed in his [post](http://blog.pars
 All this makes us believe that Parse Server is here to stay and prosper. In this post we will write about current status of Parse Server, choices you have while migrating your app or setting up a clean project and what to be careful of.
 
 #### It's all about that... base
-Whether migrating from an existing Parse.com deployment or setting up a clean project on Parse Server you need to take care about two major components: a solid MongoDB database and a node.js hosting. Below are results of our research and experiences. 
+Whether migrating from an existing Parse.com deployment or setting up a clean project on Parse Server you need to take care about two major components: a solid MongoDB database and a node.js hosting. Below are results of our research and experiences.
 
 Let us know in comments what you have been looking at and what powers your Parse Server setup.
 
 ##### mLab.com
 ![mLab.com](https://raw.githubusercontent.com/swiftingio/blog/%2316-Parse-100-days-later/%2316%20Parse%20100%20days%20after/mlab.png?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
-[mLab](https://mlab.com/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), formerly MongoLab, is the first you have probably heard of. It has a nice free tier of 500MB - can have many of these. They are great for development and testing. On production you would rather want to enable SSL, and have a Replica Set Cluster. 
+[mLab](https://mlab.com/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), formerly MongoLab, is the first you have probably heard of. It has a nice free tier of 500MB - can have many of these. They are great for development and testing. On production you would rather want to enable SSL, and have a Replica Set Cluster.
 SSL costs extra $80, but can be set account wise. Cluster can easily host multiple databases depending on your needs. You have choices of AWS, Amazon and Google platform in multiple regions. Nice interface can setup everything just by clicking. Good and responsive support team too. This is actually our choice.
 
 ##### Scalegrid.io
@@ -46,7 +46,7 @@ We have considered [Scalegrid.io](https://scalegrid.io/?utm_source=swifting.io&u
 ##### ObjectRocket.com
 ![ObjectRocket.com](https://raw.githubusercontent.com/swiftingio/blog/%2316-Parse-100-days-later/%2316%20Parse%20100%20days%20after/objectrocket.png?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
-[ObjectRocket](http://objectrocket.com?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) is the last of hosted MongoDB as a service providers that we have looked at. ObjectRocket is a Rackspace company. As it is at Compose.io, MongoDB is not their only offering. They offer Sharded Clusters and WiredTiger engine. In comparison to other vendors they were more expensive without showing clear advantages. 
+[ObjectRocket](http://objectrocket.com?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) is the last of hosted MongoDB as a service providers that we have looked at. ObjectRocket is a Rackspace company. As it is at Compose.io, MongoDB is not their only offering. They offer Sharded Clusters and WiredTiger engine. In comparison to other vendors they were more expensive without showing clear advantages.
 
 
 ##### MongoDB Cloud Manager
@@ -56,14 +56,14 @@ We have considered [Scalegrid.io](https://scalegrid.io/?utm_source=swifting.io&u
 
 ##### Your own deployment
 
-It is possible that you are MongoDB Jedi, or you can use a help of one, then you may decide to setup your cluster all by yourself. This will require some time for setup and maintenance plus knowledge. Two major benefits are cost effectiveness and full control. You can find some starting point links in references section. 
+It is possible that you are MongoDB Jedi, or you can use a help of one, then you may decide to setup your cluster all by yourself. This will require some time for setup and maintenance plus knowledge. Two major benefits are cost effectiveness and full control. You can find some starting point links in references section.
 
-For development and playing around you may set a single Mongo process where your Parse Server is hosted. However, this is a bad decision - your server and database will share resources, which is not scalable. If your hosting goes down, then your whole setup goes down. Thus, if your data can be hosted in cloud and you are not limited in other ways, reconsider one of nice trials and free tiers (ex. mLab's 500MB). 
+For development and playing around you may set a single Mongo process where your Parse Server is hosted. However, this is a bad decision - your server and database will share resources, which is not scalable. If your hosting goes down, then your whole setup goes down. Thus, if your data can be hosted in cloud and you are not limited in other ways, reconsider one of nice trials and free tiers (ex. mLab's 500MB).
 
 To sum up this section, I was really tempted to create a table with a full-blown comparison, but that would just quickly outdate 😉.
 
 #### A new home
-Finding a good hosting for node.js deployment of Parse Server is not a big deal. There are plenty of platforms that support it. Topic is also less frightening. Most of developers already have experiences with at least one of PaaS providers. You can setup Parse Server on bare machines like Amazon EC2 or use PaaS like Heroku or AWS Elastic Beanstalk where node.js environment is just ready for your package. 
+Finding a good hosting for node.js deployment of Parse Server is not a big deal. There are plenty of platforms that support it. Topic is also less frightening. Most of developers already have experiences with at least one of PaaS providers. You can setup Parse Server on bare machines like Amazon EC2 or use PaaS like Heroku or AWS Elastic Beanstalk where node.js environment is just ready for your package.
 
 ***NOTE:*** One thing to check for when choosing a smaller or a less known provider - make sure that all [Parse Server dependencies](https://github.com/ParsePlatform/parse-server/wiki/Parse-Server-Guide?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post#prerequisites) are in required versions. Keep an eye on node.js, python and MongoDB versions support.
 Back then, shortly after Parse Server was born, I was even preparing a tutorial about setup on one of smaller PaaS providers. After couple of hours of work I got stuck because of lack of support for a required MongoDB version 😓. Hopefully, those days are far behind us.
@@ -71,14 +71,14 @@ Back then, shortly after Parse Server was born, I was even preparing a tutorial 
 ##### Where can I deploy?
 [Parse Server github page](https://github.com/ParsePlatform/parse-server?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post#parse-server-sample-application) contains a list of providers that we can assume are recommended and easiest to deploy. Heroku and AWS even have these cute "Deploy to Heroku" and "Deploy to AWS" buttons that get you half way through with one click.
 
-![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) ![Deploy to AWS](http://d0.awsstatic.com/product-marketing/Elastic%20Beanstalk/deploy-to-aws.png?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) 
+![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) ![Deploy to AWS](http://d0.awsstatic.com/product-marketing/Elastic%20Beanstalk/deploy-to-aws.png?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
 Clearly you are not limited to choices above. It should run well on bare machines (ex. Linux), virtual machines or whatever you have available for your personal projects or at your company.
 
 ##### How to pick a hosting for myself?
 Going through comparison of even only major platforms would be duplicating of work. Make sure to see the list on Parse Server Github link above. If you have some prior experiences with one of platforms, go for it. If you are fresh go for Heroku or AWS - they have a free tier and are easy to setup.
 
-We have had some prior experiences with Heroku and AWS. Our choice was AWS Elastic Beanstalk. So far we enjoy it. 
+We have had some prior experiences with Heroku and AWS. Our choice was AWS Elastic Beanstalk. So far we enjoy it.
 
 #### Security of my deployment
 
@@ -202,9 +202,9 @@ With Parse Dashboard you can:
 
 ![Parse Dashboard](https://raw.githubusercontent.com/swiftingio/blog/%2316-Parse-100-days-later/%2316%20Parse%20100%20days%20after/parse-dashboard.jpg?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
-Parse Dashboard is doing well. With 1.5k stars and almost 40 contributors we can expect it to be well maintained and growing. 
+Parse Dashboard is doing well. With 1.5k stars and almost 40 contributors we can expect it to be well maintained and growing.
 
-Everything is well documented on Github page, so I would just want to attract your attention to security of your dashboard. You can setup Basic Auth credentials for access. For this to be safe is has to be accompanied by https protocol. Luckily, if you try to access it without https while not running on localhost you will not be let in. Good job team 👏 for protecting us from ourselves! 
+Everything is well documented on Github page, so I would just want to attract your attention to security of your dashboard. You can setup Basic Auth credentials for access. For this to be safe is has to be accompanied by https protocol. Luckily, if you try to access it without https while not running on localhost you will not be let in. Good job team 👏 for protecting us from ourselves!
 
 Usually your load balancer on PaaS will provide SSL and that is enough to ensure secure connection. However, if ensuring secure connection is up to you, here is a useful snippet (Parse Dashboard documentation includes only http Express setup):
 
@@ -258,18 +258,18 @@ Last thing to cover in this post is an extensibility of Parse Server. There is a
 #### Summary and references
 To sum up, Parse Server is here to stay. For our team it already contains most important features. Community support is vast and strong. Yes, we have had to sacrifice quite a bit of convenience but a little of JS has never killed anybody. Actually, we have got more awareness of what is powering our mobile apps. Initially, as probably many of you, we were afraid where to go with our Parse.com deployments. Right now we just go migrating to self hosted Parse Server with our existing projects one by one. At least until something better pops up on horizon 😆.
 
-Hopefully, you have enjoyed our summary. We would love to see your thoughts, experiences and tips! 
+Hopefully, you have enjoyed our summary. We would love to see your thoughts, experiences and tips!
 Let us know in comments or on [Twitter](https://twitter.com/swiftingio?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post).
 
 
 Finally, it would not be us if we did not provide a proper pack of references. Here they come:
 
 ###### Parse Server
-- [Parse Server Github repository](https://github.com/ParsePlatform/parse-server?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) 
+- [Parse Server Github repository](https://github.com/ParsePlatform/parse-server?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 - [Parse.com blog post introducing Parse Server
-](http://blog.parse.com/announcements/what-is-parse-server/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) 
+](http://blog.parse.com/announcements/what-is-parse-server/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 - [Great Parse Server Video Series](http://blog.parse.com/learn/parse-server-video-series-april-2016/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
-- [Swifting.io issue \#4](https://swifting.io/blog/2016/02/08/4-migrartion-from-parse-to-heroku/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
+- [Swifting.io issue \#4](https://swiftingio.github.io/blog/2016/02/08/4-migrartion-from-parse-to-heroku/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
 
 ###### Databases
@@ -308,7 +308,7 @@ Finally, it would not be us if we did not provide a proper pack of references. H
 - [Wiki article on compatibility](https://github.com/ParsePlatform/parse-server/wiki/Compatibility-with-Hosted-Parse?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
 ###### GUI
-- [Adminca.com](http://adminca.com?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) 
+- [Adminca.com](http://adminca.com?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 - [Parse Dashboard](https://github.com/ParsePlatform/parse-dashboard?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
 ###### Other

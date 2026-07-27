@@ -11,7 +11,7 @@ Today we would like to talk about news from SwiftLint and also look at different
 
 Concentrating on some basics, best practices, tips and just personal feelings about each one.
 
-**Important:** if  you would like to learn more about SwiftLint I recommend visiting our previos post about [SwiftLint](https://swifting.io/blog/2016/03/29/11-swiftlint/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post).
+**Important:** if  you would like to learn more about SwiftLint I recommend visiting our previos post about [SwiftLint](https://swiftingio.github.io/blog/2016/03/29/11-swiftlint/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post).
 
 Ready?
 

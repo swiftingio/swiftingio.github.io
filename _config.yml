@@ -7,11 +7,11 @@ minima:
   social_links:
     github: swiftingio
     twitter: swiftingio
-    rss: https://swifting.io/feed/
+    rss: https://swiftingio.github.io/feed/
     email: contact@swifting.io
 author:
   email: contact@swifting.io
-url: "https://swifting.io"
+url: "https://swiftingio.github.io"
 twitter_username: swiftingio
 github_username:  swiftingio
 google_analytics: UA-72229105-2

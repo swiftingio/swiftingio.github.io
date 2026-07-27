@@ -228,7 +228,7 @@ An extra thing we can learn here is that Swift's ```Bool``` is ```Builtin.Int1``
 
 ##### Type summary
 
-In our [post](https://swifting.io/blog/2016/01/26/1-meaningful-print-debugging/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) about print debugging we have learnt how to use ```CustomStringConvertible``` to get a meaningful debug description. A similar thing can be achieved in LLDB. To make it simple, we will use ```Int```. What we usually see in Debug Area is this:
+In our [post](https://swiftingio.github.io/blog/2016/01/26/1-meaningful-print-debugging/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) about print debugging we have learnt how to use ```CustomStringConvertible``` to get a meaningful debug description. A similar thing can be achieved in LLDB. To make it simple, we will use ```Int```. What we usually see in Debug Area is this:
 
 ![Int in Debug Area](https://raw.githubusercontent.com/swiftingio/blog/%236-Basic-LLDB-tips/%236%20Basic%20LLDB%20tips/IntInDebugArea.png?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 

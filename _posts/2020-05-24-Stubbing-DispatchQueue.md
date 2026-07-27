@@ -8,7 +8,7 @@ excerpt: In issue \#50 Synchronous Unit Tests I described an approach on how to 
 
 #### The `Dispatching` protocol
 
-In issue [\#50 Synchronous Unit Tests](https://swifting.io/blog/2018/03/03/50-synchronous-unit-tests/) I described an approach on how to get rid of waiting for `XCTestExpectation` to be **fulfill**ed. The approach assumes hiding an asynchronous dispatch of a block/closure of code to a **GCD** queue behind an abstraction layer called the `Dispatching` protocol.
+In issue [\#50 Synchronous Unit Tests](https://swiftingio.github.io/blog/2018/03/03/50-synchronous-unit-tests/) I described an approach on how to get rid of waiting for `XCTestExpectation` to be **fulfill**ed. The approach assumes hiding an asynchronous dispatch of a block/closure of code to a **GCD** queue behind an abstraction layer called the `Dispatching` protocol.
 
 ```
 protocol Dispatching {
@@ -56,7 +56,7 @@ class MessagesViewModel {
 
 #### Running unit tests synchronously - a simpler way
 
-In the previous post I suggested using a synchronous dispatch to a queue during a unit test run. Actually, there is a simpler approach. Thanks to the abstraction layer of `Dispatching` protocol you can create a **stub** which invokes your block of code instantly. It doesn't have to use `DispatchQueue` type at all, as it was suggested in the previous post ([\#50 Synchronous Unit Tests](https://swifting.io/blog/2018/03/03/50-synchronous-unit-tests/)).
+In the previous post I suggested using a synchronous dispatch to a queue during a unit test run. Actually, there is a simpler approach. Thanks to the abstraction layer of `Dispatching` protocol you can create a **stub** which invokes your block of code instantly. It doesn't have to use `DispatchQueue` type at all, as it was suggested in the previous post ([\#50 Synchronous Unit Tests](https://swiftingio.github.io/blog/2018/03/03/50-synchronous-unit-tests/)).
 
 
 ```

@@ -56,7 +56,7 @@ let optional1 = getOptional1()
 optional1.flatMap { self.doTaskThatReturnsVoid(with: $0) }
 ```
 
-Note that we don't have to use a capture list (see more on them [here](https://swifting.io/blog/2016/02/28/7-do-i-love-or-crash-something-shortly-on-capture-lists/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)) since `flatMap` takes a non-escaping closure as an argument. In my opinion the real beauty of the solution meets the eye here:
+Note that we don't have to use a capture list (see more on them [here](https://swiftingio.github.io/blog/2016/02/28/7-do-i-love-or-crash-something-shortly-on-capture-lists/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)) since `flatMap` takes a non-escaping closure as an argument. In my opinion the real beauty of the solution meets the eye here:
 
 ```
 func foo(with bars: [Bar]) {
@@ -139,7 +139,7 @@ fooMap(with: bars)
 
 [@rosskimes](https://twitter.com/rosskimes/status/805636719810899968) had a good thought - `forEach` in the example can actually be replaced by `let errors: [Error] = bars.flatMap { $0.error }`. So, let us show you a more convincing example.
 
-In snippet below `CoreDataWorker` mentioned in [issue #28](https://swifting.io/blog/2016/11/27/28-better-coredata-with-swift-generics/) is used to remove all entities from the database. A `dispatchGroup` synchronizes delete operations. All potential `errors` are appended to an array and processed when all operations are finished.
+In snippet below `CoreDataWorker` mentioned in [issue #28](https://swiftingio.github.io/blog/2016/11/27/28-better-coredata-with-swift-generics/) is used to remove all entities from the database. A `dispatchGroup` synchronizes delete operations. All potential `errors` are appended to an array and processed when all operations are finished.
 
 ```
 func removeData() {

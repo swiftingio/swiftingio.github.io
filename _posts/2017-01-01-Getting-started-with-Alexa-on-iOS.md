@@ -8,7 +8,7 @@ Happy New Year 2017! 🍾🎉
 
 January is a special time for swifting.io, as we will soon celebrate the first year of our blogging adventure 😁.
 
-Today I would like to give you a brief introduction into Amazon Alexa Voice Assistant service. You might remember [our first steps with SiriKit](https://swifting.io/blog/2016/07/18/20-sirikit-can-you-outsmart-provided-intents?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), where we were not so happy about it 😜. Apple has some work to do in VA space and while the do their job, I have decided to take a look at other contenders and have picked Alexa, one of the leaders.
+Today I would like to give you a brief introduction into Amazon Alexa Voice Assistant service. You might remember [our first steps with SiriKit](https://swiftingio.github.io/blog/2016/07/18/20-sirikit-can-you-outsmart-provided-intents?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), where we were not so happy about it 😜. Apple has some work to do in VA space and while the do their job, I have decided to take a look at other contenders and have picked Alexa, one of the leaders.
 
 #### Alexa vs. Echo
 

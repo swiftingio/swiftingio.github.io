@@ -2,11 +2,11 @@
 layout: post
 author: maciej
 title: \#49 Builder pattern
-excerpt: In [issue \#41](https://swifting.io/blog/2017/05/06/41-architecture-wars-mvc-strikes-back-takes-a-photo-with-avfoundation/) in which we have built an app that uses a photo camera to capture one's loayalty cards we used a pattern that we named `Builder` to configure properties of objects. How does the code look like when we use `Builder` pattern?
+excerpt: In [issue \#41](https://swiftingio.github.io/blog/2017/05/06/41-architecture-wars-mvc-strikes-back-takes-a-photo-with-avfoundation/) in which we have built an app that uses a photo camera to capture one's loayalty cards we used a pattern that we named `Builder` to configure properties of objects. How does the code look like when we use `Builder` pattern?
 ---
 #### The Builder Pattern
 
-In [issue \#41](https://swifting.io/blog/2017/05/06/41-architecture-wars-mvc-strikes-back-takes-a-photo-with-avfoundation/) in which we have built an app that uses a photo camera to capture one's loayalty cards we used a pattern that we named `Builder` to configure properties of objects. How does the code look like when we use `Builder` pattern?
+In [issue \#41](https://swiftingio.github.io/blog/2017/05/06/41-architecture-wars-mvc-strikes-back-takes-a-photo-with-avfoundation/) in which we have built an app that uses a photo camera to capture one's loayalty cards we used a pattern that we named `Builder` to configure properties of objects. How does the code look like when we use `Builder` pattern?
  
  ```Swift
  let tableView = UITableView(frame: .zero, style: .plain).with {
@@ -123,4 +123,4 @@ XCTAssertTrue(car.id == 1)
 
 #### Links
 - [Builder Pattern playground](https://github.com/swiftingio/builder-pattern-playground)
-- [\#41 Architecture Wars](https://swifting.io/blog/2017/05/06/41-architecture-wars-mvc-strikes-back-takes-a-photo-with-avfoundation/)
+- [\#41 Architecture Wars](https://swiftingio.github.io/blog/2017/05/06/41-architecture-wars-mvc-strikes-back-takes-a-photo-with-avfoundation/)

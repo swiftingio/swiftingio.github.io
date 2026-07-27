@@ -11,7 +11,7 @@ This post includes 2 ways applied by my team to deal with that issue. There is a
 #### Our case
 In our project we have a Facebook style wall with posts and status updates. As this is a very interactive part of an app it should be refreshed quite often. You can probably recall quite easily one of your cases. 
 
-***NOTE:*** Problem is universal for any architecture of iOS app. You may find some articles for MVC and others, where `UIViewControllers` or other Controllers are responsible for `NSTimer` lifecycle. That is why we have decided to present examples with [VIPER](https://swifting.io/blog/2016/03/07/8-viper-to-be-or-not-to-be/?utm_source=swifting.io) architecture. In this scenario an Interactor is responsible for creating and invalidating `NSTimer`.
+***NOTE:*** Problem is universal for any architecture of iOS app. You may find some articles for MVC and others, where `UIViewControllers` or other Controllers are responsible for `NSTimer` lifecycle. That is why we have decided to present examples with [VIPER](https://swiftingio.github.io/blog/2016/03/07/8-viper-to-be-or-not-to-be/?utm_source=swifting.io) architecture. In this scenario an Interactor is responsible for creating and invalidating `NSTimer`.
 
 
 #### How NOT to do it: Invalidate in deinit
@@ -42,7 +42,7 @@ As stated in [Apple's documentation](https://developer.apple.com/library/mac/doc
 
 #### Do I have the same problem?
 
-A quick way to verify whether problem is existing in your setup is to use a simple [print debugging](https://swifting.io/blog/2016/01/26/1-meaningful-print-debugging/?utm_source=swifting.io) method:
+A quick way to verify whether problem is existing in your setup is to use a simple [print debugging](https://swiftingio.github.io/blog/2016/01/26/1-meaningful-print-debugging/?utm_source=swifting.io) method:
 
 ```
 deinit{

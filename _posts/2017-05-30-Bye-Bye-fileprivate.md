@@ -12,7 +12,7 @@ The new Apple developer season is not only about APIs, OSes but also about Swift
 
 Among all new features, one thing came particularly to my interest - visibility of `private` declaration in extensions in the same file (SE-0169). 
 
-About a year ago, in [Issue #22](https://swifting.io/blog/2016/08/17/22-swift-3-access-control-beta-6/)
+About a year ago, in [Issue #22](https://swiftingio.github.io/blog/2016/08/17/22-swift-3-access-control-beta-6/)
 we have discussed, and complained a bit about the new `fileprivate`. As much as splitting implementation to extensions is considered a good practice, `fileprivate` was initially intended to be used rarely. In reality it was used a lot. We've had to update our code in around 200 places 😅. 
 
 But this will change with Swift 4. `private` declaration will be accessible in type extensions in the same file. This change concerns only extensions; subclasses in the same files are not in scope.

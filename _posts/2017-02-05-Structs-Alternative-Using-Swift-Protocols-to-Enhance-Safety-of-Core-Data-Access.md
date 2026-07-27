@@ -4,7 +4,7 @@ author: alek
 title: \#35 Structs Alternative - Using Swift Protocols to Enhance Safety of Core Data Access
 excerpt: 
 ---
-[A previous article](https://swifting.io/blog/2016/11/27/28-better-coredata-with-swift-generics/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) mentions the usage of a structs layer in accessing Core Data.
+[A previous article](https://swiftingio.github.io/blog/2016/11/27/28-better-coredata-with-swift-generics/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) mentions the usage of a structs layer in accessing Core Data.
 
 This approach has some very nice properties, like thread safety of the struct values and the structs are always well formed. However this approach became too bothersome in our code and had its own share of problems.
 
@@ -239,6 +239,6 @@ object.relationshipRO.forEach {
 This is just a precaution to make modifying managed objects on the main thread impossible. Compile time safety is a nice thing, makes you sleep better. Hopefully a lot of the weird tricks in the above code will be removed with Swift 4 and above.
 
 #### Links
-- [\#28 Better CoreData with Swift Generics](https://swifting.io/blog/2016/11/27/28-better-coredata-with-swift-generics/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
+- [\#28 Better CoreData with Swift Generics](https://swiftingio.github.io/blog/2016/11/27/28-better-coredata-with-swift-generics/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 - [Core Data Concurrency Debugging](https://oleb.net/blog/2014/06/core-data-concurrency-debugging/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 - [Aleksander Balicki's blog](http://alistra.ghost.io/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)

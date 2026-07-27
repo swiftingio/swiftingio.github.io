@@ -2,17 +2,17 @@
 layout: post
 author: bartek
 title: \#11 SwiftLint
-excerpt: 
+excerpt:
 ---
-Should the opening brace of a function or control flow statement be on a new line or not ?:) This and many other questions cross my mind when I think about coding style. I love the comment from Ray Wenderlich's [Swift style guide](https://github.com/raywenderlich/swift-style-guide/issues/44?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post): 
+Should the opening brace of a function or control flow statement be on a new line or not ?:) This and many other questions cross my mind when I think about coding style. I love the comment from Ray Wenderlich's [Swift style guide](https://github.com/raywenderlich/swift-style-guide/issues/44?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post):
 
 *"You like braces on new lines @elephantronic ? This will strain our friendship!"* ...hehe, so it really does matter!:)
 
-But coming back to the main subject: This year one of the items on my to do list is a task to learn more about static code analysis tools: linters, Sonar and everything else that can fight against bad smells. In our [previous post](https://swifting.io/blog/2016/03/21/10-is-christmas-earlier-this-year-code-quality-analyser-abc/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) Maciej mentioned more about code quality and about [Codebeat](https://codebeat.co/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post). Today I would like to concentrate on [SwitLint](https://github.com/realm/SwiftLint/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), which can help us keep cohesion in our code without straining friendships in our project team:) 
+But coming back to the main subject: This year one of the items on my to do list is a task to learn more about static code analysis tools: linters, Sonar and everything else that can fight against bad smells. In our [previous post](https://swiftingio.github.io/blog/2016/03/21/10-is-christmas-earlier-this-year-code-quality-analyser-abc/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) Maciej mentioned more about code quality and about [Codebeat](https://codebeat.co/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post). Today I would like to concentrate on [SwitLint](https://github.com/realm/SwiftLint/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), which can help us keep cohesion in our code without straining friendships in our project team:)
 
 SwiftLint checks the source code for programmatic as well as stylistic errors. This is most helpful in identifying some common and uncommon mistakes that are made during coding. SwiftLint is based on guidelines from [Swift style guide](https://github.com/github/swift-style-guide?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post). Simply saying it can just helps us with:
 
-* maintaining a higher level of code discipline, 
+* maintaining a higher level of code discipline,
 
 * increasing the reliability of the code.
 
@@ -36,27 +36,27 @@ We have two options:
 * just type the following command in the Terminal:
 
 ```
-$ swiftlint lint 
+$ swiftlint lint
 ```
 
 * or we can integrate SwiftLint with Xcode:
 
 ![RunScript](https://raw.githubusercontent.com/swiftingio/blog/%2311-SwifLint/Images/RunScript.jpg?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
-Just for the test I have run SwiftLint with default options in my current project and I wish I had been using it from the beginning of the project &#128517; : 
+Just for the test I have run SwiftLint with default options in my current project and I wish I had been using it from the beginning of the project &#128517; :
 
 ![SwiftLintRun](https://raw.githubusercontent.com/swiftingio/blog/%2311-SwifLint/Images/SwiftLintRun.jpg?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
-#### SwiftLint Rules 
+#### SwiftLint Rules
 
 All available rules which you can use are [here](https://github.com/realm/SwiftLint/tree/master/Source/SwiftLintFramework/Rules?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post).
 
-If you want to have a possibility to control which rule is disabled/enabled and to set thresholds for warnings and errors for a given rule, just create a **.swiftlint.yml** file in your project directory: 
+If you want to have a possibility to control which rule is disabled/enabled and to set thresholds for warnings and errors for a given rule, just create a **.swiftlint.yml** file in your project directory:
 
 ![swiftlintYML](https://raw.githubusercontent.com/swiftingio/blog/%2311-SwifLint/Images/swiftlintYML.jpg?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
 You can download the example configuration file from [here](https://github.com/swiftingio/blog/blob/%2311-SwifLint/.swiftlint.yml?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post).
- 
+
 Now by typing in the Terminal ```swiftlint rules``` you can check your settings:
 
 ![SwiftLintRules](https://raw.githubusercontent.com/swiftingio/blog/%2311-SwifLint/Images/SwiftLintRules.jpg?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
@@ -65,16 +65,16 @@ Now by typing in the Terminal ```swiftlint rules``` you can check your settings:
 
 Sometimes running options can be very useful. Let’s focus on them:
 
-* ```-- path``` The path to the file or directory. For example if you want to lint only one file: 
+* ```-- path``` The path to the file or directory. For example if you want to lint only one file:
 
 ```
 $ swiftlint autocorrect --path just_this_file.swift
 ```
 
-* ```-- config``` The path to SwiftLint's configuration file *.swiftlint.yml:* 
+* ```-- config``` The path to SwiftLint's configuration file *.swiftlint.yml:*
 
 ```
-$ swiftlint lint --config .swiftlint.yml 
+$ swiftlint lint --config .swiftlint.yml
 ```
 
 * ```-- use-script-input-files```  read SCRIPT_INPUT_FILE* environment variables as files. When using this parameter can be useful? For example when we only would like to lint modified files and new files tracked in our github repository. Example of usage which I found [here](https://www.snip2code.com/Snippet/1100061/Run-SwiftLint-only-on-untracked-modified/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post):
@@ -90,7 +90,7 @@ if which swiftlint >/dev/null; then
 		export SCRIPT_INPUT_FILE_$count=$file_path
 		count=$((count + 1))
 	done
-	
+
 	export SCRIPT_INPUT_FILE_COUNT=$count
 
 	swiftlint lint --use-script-input-files
@@ -100,9 +100,9 @@ fi
 ```
 ```
 - git ls-files: outputs the filenames in working directory
-- o: (others: Show other (i.e. untracked) files in the output) 
+- o: (others: Show other (i.e. untracked) files in the output)
 - m: (modified) Show modified files in the output
-- exclude-from=.gitignore: it omits ignored files 
+- exclude-from=.gitignore: it omits ignored files
 - grep ".swift$" : search only .swift files
 ```
 

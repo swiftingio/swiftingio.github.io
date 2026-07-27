@@ -360,7 +360,7 @@ The time to start writing **unit tests**❤️ is *now*!
 
 #### Resources
 
-- [swifting.io - code quality and unit testing](https://swifting.io/blog/2016/03/21/10-is-christmas-earlier-this-year-code-quality-analyser-abc/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
+- [swifting.io - code quality and unit testing](https://swiftingio.github.io/blog/2016/03/21/10-is-christmas-earlier-this-year-code-quality-analyser-abc/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 - [Paweł Dudek - BDD presentations](https://speakerdeck.com/paweldudek?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 - [objc.io - issue \#15](https://www.objc.io/issues/15-testing/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 - [realm.io - Real-world mocking in Swift](https://realm.io/news/tryswift-veronica-ray-real-world-mocking-swift/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)

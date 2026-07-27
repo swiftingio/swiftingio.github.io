@@ -2,7 +2,7 @@
 layout: post
 author: bartek
 title: \#33 Security – implement your own encryption schema
-excerpt: 
+excerpt:
 ---
 After publishing this post and shared it via Twitter, on the next day we got a message from [Rob Napier](https://twitter.com/cocoaphony?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post):
 
@@ -14,7 +14,7 @@ The article below contains improvements based on Rob's comments. Updated section
 
 #### Introduction
 
-I hope you you've had possibility to look at our [previous post](https://swifting.io/blog/2016/08/09/21-ios-security-101/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) about security basics. 
+I hope you you've had possibility to look at our [previous post](https://swiftingio.github.io/blog/2016/08/09/21-ios-security-101/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) about security basics.
 
 Today we would like to concentrate more on scenarios in which we want to strictly secure our sensitive data in our applications, with below assumptions:
 
@@ -29,7 +29,7 @@ In these cases it is good to consider implementation of own encryption scheme.
 
 Apple provides many different aspects of security. During development of your security layer don't forget about crucial things like:
 
-- **Keychain** - A lot of apps handle passwords and other short sensitive bits of data like: keys, login, passwords, tokens. The iOS Keychain provides a secure way to store these items. Under the hood, the Keychain is simply a SQLite database. Keychain data is protected using a [class](https://developer.apple.com/reference/security/1658642-keychain_services/1663541-keychain_item_accessibility_cons/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) structure, which determine access level to stored data. 
+- **Keychain** - A lot of apps handle passwords and other short sensitive bits of data like: keys, login, passwords, tokens. The iOS Keychain provides a secure way to store these items. Under the hood, the Keychain is simply a SQLite database. Keychain data is protected using a [class](https://developer.apple.com/reference/security/1658642-keychain_services/1663541-keychain_item_accessibility_cons/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) structure, which determine access level to stored data.
 - **Data Protection** - Every time we create a file in our iOS application we can assign a specific [class](https://developer.apple.com/reference/foundation/nsfilemanager/1653059-file_protection_values/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)) which determines the access level to the created resource.
 - **Passcode** - Without a passcode, the entire content of the Keychain can be read by anyone with physical access to the device. The stronger it is, the stronger the encryption key becomes. Brute-forcing 4-digit PINs would take 4-5 days (according to [this](https://www.consumeraffairs.com/news/how-to-brute-force-break-a-4-digit-iphone-password-in-111-hours-or-less-032515.html?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) source), but a 6-character alphanumeric passcode with lowercase letters, uppercase letters and numbers would take years to break it down.
 
@@ -54,7 +54,7 @@ Finally, having the decrypted master key we can encrypt our data with an AES alg
 
 ![](https://raw.githubusercontent.com/swiftingio/blog/%2333-Master-Key-encryption/Images/DataEncyptionIV.jpg?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
-Ok, but what are Salt, PBKDF, AES, IV, HMAC, etc.? 
+Ok, but what are Salt, PBKDF, AES, IV, HMAC, etc.?
 
 ###### User input - password, pin
 
@@ -68,17 +68,17 @@ Below example implementation of generating salt is based on proposal from [The M
 
 ```
     func generateSalt(length: Int) -> Data? {
-        
+
         var data = Data(count: length)
         let result = data.withUnsafeMutableBytes { mutableBytes in
             SecRandomCopyBytes(kSecRandomDefault, data.count, mutableBytes)
         }
-        
+
         if(result != 0) {
             print("Unable to generate salt")
             return nil
         }
-        
+
         return data
     }
 ```
@@ -102,7 +102,7 @@ DK = PBKDF2(PRF, Password, Salt, c, dkLen)
 
 The Derived Key is an output of PBKDF2 function. In the concept shown on the pictures it is used as the encryption key in AES algorithm to encrypt the master key.
 
-###### AES and IV **❗Updated❗** 
+###### AES and IV **❗Updated❗**
 
 The Advanced Encryption Standard (AES) is a symmetric encryption algorithm that supports a block length of 128 bits and key lengths of 128, 192, and 256 bits. AES in most libraries use [CBC](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post#Cipher_Block_Chaining_.28CBC.29) mode by default, that is used generally in database applications.
 
@@ -121,17 +121,17 @@ If you would like to explore AES algorithm more I strongly recommend watching [t
 
 The Master Key is usually a randomly generated sequence of bits, which is used as a key to encrypt and decrypt application data by using AES algorithm. The longer it is, the longer the duration of encryption process is. It can really impact your application performance!
 
-###### HMAC **❗Updated❗** 
+###### HMAC **❗Updated❗**
 
 HMAC is a hash-based message authentication code. It is a mechanism for calculating a message authentication code involving a hash function in combination with a secret key. Any general advice on encryption should always recommend authentication. Without authentication it can be possible to modify the cipher text (without knowing the key). The most common way to do this is to generate a second key and use it to generate the HMAC of the cipher text and append that to the end of the message.
- 
+
 #### Questions
 
 When implementing your security layer for sure you will have a lot of questions. For me they were:
 
 ***1) Is data stored in Keychain with `kSecAttrAccessibleAlways` flag also protected?***
 
-This class key is protected only with the [UID (Unique ID)](https://www.apple.com/business/docs/iOS_Security_Guide.pdf), and is kept in [Effaceable Storage](https://www.apple.com/business/docs/iOS_Security_Guide.pdf). 
+This class key is protected only with the [UID (Unique ID)](https://www.apple.com/business/docs/iOS_Security_Guide.pdf), and is kept in [Effaceable Storage](https://www.apple.com/business/docs/iOS_Security_Guide.pdf).
 
 ***2) Where to store the Master key?***
 
@@ -146,11 +146,11 @@ It depends. In some cases 16 is plenty and in other cases 8 is plenty. And of co
 If the user removes their passcode, all the Keychain items with this access restriction will be removed. Use it when your application requires using a passcode. It also prevents the item from being backed up to iCloud or moved to another device.
 
 #### Remember
-- Never implement your own crypto, unless you have to! There a few great Crypto libraries on GitHub. 
+- Never implement your own crypto, unless you have to! There a few great Crypto libraries on GitHub.
 - Use at minimum 256-bit AES for symmetric key encryption.
 - Use SHA-256 or SHA-512 as the hashing algorithm.
 - Never reuse the salt.
-- Use an unpredictable Initialization Vector. 
+- Use an unpredictable Initialization Vector.
 - Use AES with CBC mode.
 - Keychain’s contents are not secure on a jailbroken device.
 - Use an well-known key derivation function, such as `PBKDF2`, to generate keys.
@@ -167,7 +167,7 @@ If the user removes their passcode, all the Keychain items with this access rest
 
 #### Resources
 
-- [Our example project](https://github.com/barcis89/masterKeyEncryption?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) 
+- [Our example project](https://github.com/barcis89/masterKeyEncryption?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 - [How to store salt](http://security.stackexchange.com/questions/17421/how-to-store-salt/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 - [Hashing security](https://crackstation.net/hashing-security.html?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 - [The Mobile Application Hacker's Handbook](http://eu.wiley.com/WileyCDA/WileyTitle/productCd-1118958500.html?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)

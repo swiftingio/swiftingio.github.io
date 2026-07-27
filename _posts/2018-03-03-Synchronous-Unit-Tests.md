@@ -340,7 +340,7 @@ Special thanks to [Paweł Dudek](https://twitter.com/eldudi) for a review!
 #### Links
 - [Sample code on GitHub](https://github.com/swiftingio/sync-unit-testing-50?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 - [Unit testing asynchronous Swift code](https://www.swiftbysundell.com/posts/unit-testing-asynchronous-swift-code?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
-- [Unit testing on swifting.io](https://swifting.io/blog/category/unit-testing/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
+- [Unit testing on swifting.io](https://swiftingio.github.io/blog/category/unit-testing/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 - [Deadlock](https://en.wikipedia.org/wiki/Deadlock?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
 

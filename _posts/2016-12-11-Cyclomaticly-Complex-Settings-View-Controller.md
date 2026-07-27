@@ -12,7 +12,7 @@ But it was ok, after all it was just three options, no big deal. When a few week
 
 ![](https://raw.githubusercontent.com/swiftingio/blog/%2330-Cyclomaticly-Complex-Settings-View-Controller/settings.png?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
-But developers used this long `switch` statement in many methods that dealt with `tableView`. They also had been using [SwiftLint](https://github.com/realm/SwiftLint?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) (a tool for code quality mentioned in [issue #11](https://swifting.io/blog/2016/03/29/11-swiftlint/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) and [issue #26](https://swifting.io/blog/2016/10/25/26-swiftlint-sonarqube-and-checkmarx-what-else/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)) that indicated that their cyclomatic complexity limits for those methods were overreached.
+But developers used this long `switch` statement in many methods that dealt with `tableView`. They also had been using [SwiftLint](https://github.com/realm/SwiftLint?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) (a tool for code quality mentioned in [issue #11](https://swiftingio.github.io/blog/2016/03/29/11-swiftlint/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) and [issue #26](https://swiftingio.github.io/blog/2016/10/25/26-swiftlint-sonarqube-and-checkmarx-what-else/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)) that indicated that their cyclomatic complexity limits for those methods were overreached.
 
 ![](https://raw.githubusercontent.com/swiftingio/blog/%2330-Cyclomaticly-Complex-Settings-View-Controller/warning.png?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
 
@@ -20,7 +20,7 @@ Wait! Cyclo-what?! 💥
 
 #### Cyclomatic complexity
 
-Documentation for [codebeat](https://hub.codebeat.co/docs/software-quality-metrics?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) (another tool for code quality assurance) mentioned by us in [issue #10](https://swifting.io/blog/2016/03/21/10-is-christmas-earlier-this-year-code-quality-analyser-abc/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) has a great explanation of what **cyclomatic complexity** is:
+Documentation for [codebeat](https://hub.codebeat.co/docs/software-quality-metrics?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) (another tool for code quality assurance) mentioned by us in [issue #10](https://swiftingio.github.io/blog/2016/03/21/10-is-christmas-earlier-this-year-code-quality-analyser-abc/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) has a great explanation of what **cyclomatic complexity** is:
 
 > The cyclomatic complexity of a section of source code is the number of linearly independent paths within it. For instance, if the source code contained no control flow statements (conditionals or decision points), such as if statements, the complexity would be 1, since there is only a single path through the code. If the code had one single-condition if statement, there would be two paths through the code: one where the if statement evaluates to true and another one where it evaluates to false, so complexity would be 2 for a single if statement with a single condition. Two nested single-condition ifs, or one if with two conditions, would produce a cyclomatic complexity of 4. (...)
 

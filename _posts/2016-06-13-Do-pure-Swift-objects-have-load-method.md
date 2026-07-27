@@ -4,7 +4,7 @@ author: maciej
 title: \#18 Do pure Swift objects have load() method?
 excerpt: 
 ---
-I'm pretty sure this day, or actually the whole week, will be pretty exciting due to the start of WWDC 2016. Before that happens I'd like to share my finding from unit testing of one of my view controllers. If you're not familiar with unit testing, check out our last issue [Unit Test all the things!](https://swifting.io/blog/2016/06/06/17-unit-test-all-the-things/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post).
+I'm pretty sure this day, or actually the whole week, will be pretty exciting due to the start of WWDC 2016. Before that happens I'd like to share my finding from unit testing of one of my view controllers. If you're not familiar with unit testing, check out our last issue [Unit Test all the things!](https://swiftingio.github.io/blog/2016/06/06/17-unit-test-all-the-things/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post).
 
 #### Unit test all the things! 
 

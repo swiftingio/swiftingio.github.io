@@ -7,11 +7,11 @@ excerpt:
 The 2017 season for Apple news is almost over. 
 WWDC 2017 is a far history already. We've got new frameworks, revamped Xcode 9, iPhone X and ... HomePod coming soon.
 
-In [Issue #43](https://swifting.io/blog/2017/05/30/43-bye-bye-fileprivate/) I was wondering if Apple would join the Virtual Assistants war with a device and vast access to Domains and Intents in SiriKit. The first one is true, there is HomePod coming in December. It's expensive ($350), it's heavy (2.5kg!), it's music oriented but will it be a threat for family of Echos or Google Homes? We will see 🤔. Let's focus on a developer side of the Force right now. With Google and Amazon furiously adding features like calling and remote notifications, my appetite has really increased.
+In [Issue #43](https://swiftingio.github.io/blog/2017/05/30/43-bye-bye-fileprivate/) I was wondering if Apple would join the Virtual Assistants war with a device and vast access to Domains and Intents in SiriKit. The first one is true, there is HomePod coming in December. It's expensive ($350), it's heavy (2.5kg!), it's music oriented but will it be a threat for family of Echos or Google Homes? We will see 🤔. Let's focus on a developer side of the Force right now. With Google and Amazon furiously adding features like calling and remote notifications, my appetite has really increased.
 Hop in and let's see what 2017 update brought us.
 
 
-If you are new to SiriKit you may want to check [Issue #20](https://swifting.io/blog/2016/07/18/20-sirikit-can-you-outsmart-provided-intents/) and my first attempts to outsmart Intents provided in 2016.
+If you are new to SiriKit you may want to check [Issue #20](https://swiftingio.github.io/blog/2016/07/18/20-sirikit-can-you-outsmart-provided-intents/) and my first attempts to outsmart Intents provided in 2016.
 
 
 #### Any new Intents or Domains?

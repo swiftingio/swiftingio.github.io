@@ -270,5 +270,5 @@ Starting from watchOS 4 you can benefit from Core Bluetooth and connect up to 2 
 - [WWDC 2017 - 205](https://developer.apple.com/videos/play/wwdc2017/205/) - What's New in watchOS
 - [WWDC 2017 - 408](https://developer.apple.com/videos/play/wwdc2017/408/) - What’s New in Playgrounds
 - [Apple](https://developer.apple.com/bluetooth/) - Bluetooth for Developers
-- [swifting.io](https://swifting.io/blog/category/corebluetooth/) - #Core Bluetooth
+- [swifting.io](https://swiftingio.github.io/blog/category/corebluetooth/) - #Core Bluetooth
 - [Bluetooth](https://www.bluetooth.com) - official website

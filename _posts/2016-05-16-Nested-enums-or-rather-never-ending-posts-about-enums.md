@@ -88,11 +88,11 @@ class PlaceInformationViewController: UIViewController, UITableViewDataSource {
 Some statistics of the above code:
 
 * Lines of code of ***tableView:cellForRowAtIndexPath:*** function: 28
-* What did [SwiftLint](https://swifting.io/blog/2016/03/29/11-swiftlint/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) say?
+* What did [SwiftLint](https://swiftingio.github.io/blog/2016/03/29/11-swiftlint/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) say?
 
 ![SwiftLint](https://raw.githubusercontent.com/swiftingio/blog/%2315-Nested-Enums/Images/SwiftLintStart.jpg)
 	
-* [Codebeat](https://swifting.io/blog/2016/03/21/10-is-christmas-earlier-this-year-code-quality-analyser-abc/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) rated the code to 3.97 [GPA](https://help.codebeat.co/docs/gpa-explained/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) (Function too long)
+* [Codebeat](https://swiftingio.github.io/blog/2016/03/21/10-is-christmas-earlier-this-year-code-quality-analyser-abc/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) rated the code to 3.97 [GPA](https://help.codebeat.co/docs/gpa-explained/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) (Function too long)
 
 My intuition prompted that it can be done better:). So I have started thinking of how to refactor the code.
 

@@ -5,7 +5,7 @@ title: \#39 HomeKit Devices Simulator using Node-RED & Raspberry Pi
 excerpt: 
 ---
 
-In [Issue #38](https://swifting.io/blog/2017/03/20/38-home-automation-with-homebridge/) Bartek showed how we can leverage Homebridge to emulate HomeKit API for various smart devices.
+In [Issue #38](https://swiftingio.github.io/blog/2017/03/20/38-home-automation-with-homebridge/) Bartek showed how we can leverage Homebridge to emulate HomeKit API for various smart devices.
 
 Today we will tackle slightly different problem related to HomeKit. Imagine that you want to play with HomeKit, but have no devices, don't want to invest too early or simply just need to quickly try it out? 
 

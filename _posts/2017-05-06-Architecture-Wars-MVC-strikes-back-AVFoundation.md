@@ -4,7 +4,7 @@ author: maciej
 title: \#41 Architecture Wars – MVC strikes back & takes a photo with AVFoundation
 excerpt: 
 ---
-Not so long ago, in a galaxy not so far away... we promised you a series about architectural patterns. This post is a follow up for our initial [issue](https://swifting.io/blog/2016/09/07/architecture-wars-a-new-hope/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) on the topic. And finally, we can share with you the **My Cards** application written in MVC ...
+Not so long ago, in a galaxy not so far away... we promised you a series about architectural patterns. This post is a follow up for our initial [issue](https://swiftingio.github.io/blog/2016/09/07/architecture-wars-a-new-hope/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) on the topic. And finally, we can share with you the **My Cards** application written in MVC ...
 
 <br/>
 
@@ -166,7 +166,7 @@ fileprivate lazy var collectionView: UICollectionView = UICollectionView(frame:
     }
 ```
 
-What it allows us to do is calling `with(configure:)` method in which we get the instance we can configure. We wanted to extract view configuration from `viewDidLoad` method to avoid having a massive method and a large [ABC](https://hub.codebeat.co/v1.0/docs/software-quality-metrics?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) metrics in [Codebeat](https://codebeat.co/projects/github-com-swiftingio-architecture-wars-mvc?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post).  Properties using this pattern are marked as lazy properties. Thanks to that compiler doesn't complain if we initialize `UICollectionView` with `self.layout` property 😉. Btw., if the way we register a cell for reuse seems strange to you, check out our [issue \#40](https://swifting.io/blog/2017/04/19/40-how-to-swiftly-dequeue-a-cell/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post).
+What it allows us to do is calling `with(configure:)` method in which we get the instance we can configure. We wanted to extract view configuration from `viewDidLoad` method to avoid having a massive method and a large [ABC](https://hub.codebeat.co/v1.0/docs/software-quality-metrics?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) metrics in [Codebeat](https://codebeat.co/projects/github-com-swiftingio-architecture-wars-mvc?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post).  Properties using this pattern are marked as lazy properties. Thanks to that compiler doesn't complain if we initialize `UICollectionView` with `self.layout` property 😉. Btw., if the way we register a cell for reuse seems strange to you, check out our [issue \#40](https://swiftingio.github.io/blog/2017/04/19/40-how-to-swiftly-dequeue-a-cell/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post).
 
 We ❤️ auto layout. Due to that fact, we have a special helper that initializes a view with a `.zero` frame and sets `translatesAutoresizingMaskIntoConstraints` to  `false`. You just need to call `constrained()` method on a `UIView` subclass in order to tap into it. Unfortunately it won't work with classes such as `UICollectionView` or `UITableView` due to their designated initializers, but you can use the `Builder` protocol to do it by yourself. 
 
@@ -193,7 +193,7 @@ Additionally, a view controller can be supported by some services:
 
 ###### CoreDataWorker
 
-`CoreDataWorker` is a pattern presented in issue [\#28 Better CoreData with Swift Generics](https://swifting.io/blog/2016/11/27/28-better-coredata-with-swift-generics/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), which is used for fetching data from and saving data to a persistent store.
+`CoreDataWorker` is a pattern presented in issue [\#28 Better CoreData with Swift Generics](https://swiftingio.github.io/blog/2016/11/27/28-better-coredata-with-swift-generics/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), which is used for fetching data from and saving data to a persistent store.
 
 ###### NetworkLoader
 
@@ -344,8 +344,8 @@ May the force be with you!
 #### Links
 
 - [My Cards project on Github](https://github.com/swiftingio/architecture-wars-mvc?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
-- [\#24 Architecture Wars – A New Hope](https://swifting.io/blog/2016/09/07/architecture-wars-a-new-hope/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
-- [\#27 Localize your strings swiftly](https://swifting.io/blog/2016/11/20/27-localize-your-strings-swiftly/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
-- [\#28 Better CoreData with Swift Generics](https://swifting.io/blog/2016/11/27/28-better-coredata-with-swift-generics/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
-- [\#29 An alternative to if let and guard let](https://swifting.io/blog/2016/12/04/29-an-alternative-to-if-let-and-guard-let/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
-- [\#40 How to swiftly dequeue a cell?](https://swifting.io/blog/2017/04/19/40-how-to-swiftly-dequeue-a-cell/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
+- [\#24 Architecture Wars – A New Hope](https://swiftingio.github.io/blog/2016/09/07/architecture-wars-a-new-hope/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
+- [\#27 Localize your strings swiftly](https://swiftingio.github.io/blog/2016/11/20/27-localize-your-strings-swiftly/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
+- [\#28 Better CoreData with Swift Generics](https://swiftingio.github.io/blog/2016/11/27/28-better-coredata-with-swift-generics/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
+- [\#29 An alternative to if let and guard let](https://swiftingio.github.io/blog/2016/12/04/29-an-alternative-to-if-let-and-guard-let/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)
+- [\#40 How to swiftly dequeue a cell?](https://swiftingio.github.io/blog/2017/04/19/40-how-to-swiftly-dequeue-a-cell/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post)

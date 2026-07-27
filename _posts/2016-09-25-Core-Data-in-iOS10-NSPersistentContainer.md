@@ -5,7 +5,7 @@ title: \#25 Core Data in iOS10 - NSPersistentContainer
 excerpt: 
 ---
 
-Xcode 8 is here if you have not peeked at any of betas yet, you will find all kinds of new stuff. There is Swift 3 with [major changes](https://swifting.io/blog/2016/08/17/22-swift-3-access-control-beta-6?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), there are new frameworks like [SiriKit](https://swifting.io/blog/2016/07/18/20-sirikit-can-you-outsmart-provided-intents?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) and there are enhancements to existing ones like [notifications](https://swifting.io/blog/2016/08/22/23-notifications-in-ios-10?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post). We have also received simplified Core Data stack in form of NSPersistentContainer that does heavy part of setup for us. Is it worth trying? Let's dig in and find out.
+Xcode 8 is here if you have not peeked at any of betas yet, you will find all kinds of new stuff. There is Swift 3 with [major changes](https://swiftingio.github.io/blog/2016/08/17/22-swift-3-access-control-beta-6?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post), there are new frameworks like [SiriKit](https://swiftingio.github.io/blog/2016/07/18/20-sirikit-can-you-outsmart-provided-intents?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) and there are enhancements to existing ones like [notifications](https://swiftingio.github.io/blog/2016/08/22/23-notifications-in-ios-10?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post). We have also received simplified Core Data stack in form of NSPersistentContainer that does heavy part of setup for us. Is it worth trying? Let's dig in and find out.
 
 #### Core Data stack prior to iOS10
 

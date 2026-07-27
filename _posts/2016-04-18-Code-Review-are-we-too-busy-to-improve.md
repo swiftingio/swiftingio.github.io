@@ -4,7 +4,7 @@ author: maciej
 title: \#13 Code Review – are we too busy to improve?
 excerpt: 
 ---
-[Issue \#10](https://swifting.io/blog/2016/03/21/10-is-christmas-earlier-this-year-code-quality-analyser-abc/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) has had a very good perception by the community. For this reason we will blog about **code quality** topics from time to time. Today we'd like to discuss **code review** process, challenges one may encounter when introducing it in their workplace and what to consider when reviewing one's source code.
+[Issue \#10](https://swiftingio.github.io/blog/2016/03/21/10-is-christmas-earlier-this-year-code-quality-analyser-abc/?utm_source=swifting.io&utm_medium=web&utm_campaign=blog%20post) has had a very good perception by the community. For this reason we will blog about **code quality** topics from time to time. Today we'd like to discuss **code review** process, challenges one may encounter when introducing it in their workplace and what to consider when reviewing one's source code.
 
 #### What is a code review?
 

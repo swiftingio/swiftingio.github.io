@@ -11,7 +11,7 @@ Have you ever exposed your company to intellectual or financial loss? Have you e
 <script async class="speakerdeck-embed" data-id="b06e1430a4954a4d989cc8ae1fb861de" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
 
-If you want to know more about security check out the [security category](https://swifting.io/blog/category/security/) on our blog.
+If you want to know more about security check out the [security category](https://swiftingio.github.io/blog/category/security/) on our blog.
 
 #### Sample project
 During the talk we showed how to embed security mechanisms in [**My Cards**](https://github.com/swiftingio/architecture-wars-mvc) project. A few examples can be found on different branches on our GitHub:
